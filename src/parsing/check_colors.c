@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/11 12:41:21 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/11 14:52:15 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	check_color(t_data *data, int *components, char identifier)
 	int				i;
 
 	i = 0;
-	while (components[i])
+	while (i < 3)
 	{
 		if (components[i] < 0 || components[i] > 255)
-			return (printf("color value must be between 0 and 255\n"), 1);
+			return (printf("color value %d must be between 0 and 255\n", components[i]), 1);
 		i++;
 	}
 	color = (components[0] << 16) | (components[1] << 8) | components[2];
@@ -55,21 +55,7 @@ int	get_color(t_data *data, char *line)
 	if (j == 3)
 	{
 		if (check_color(data, components, identifier) == 1)
-			return (error_map(data, i), 1);
+			return (error_map(data, 1), 1);
 	}
 	return (0);
 }
-
-// int main(void)
-// {
-// 	char *line;
-// 	t_data data;
-// 	line = ft_strdup("C 225,2412,0");
-// 	data.color_c = -1;
-// 	data.color_f = -1;
-// 	get_color(&data, line);
-// 	unsigned char r = (data.color_c >> 16) & 0xFF;
-// 	unsigned char g = (data.color_c >> 8) & 0xFF;
-// 	unsigned char b = data.color_c & 0xFF;
-// 	printf ("%d, %d, %d\n", r, g, b);
-// }

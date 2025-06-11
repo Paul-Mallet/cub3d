@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:20:57 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/11 11:11:11 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/11 14:44:58 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	count_lines(char *filename, t_data *data)
 
 	len = 0;
 	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (ft_printf("Error\n%sCan't read the file\n"), -1);
 	bit = 1;
 	while (bit)
 	{
 		bit = read(fd, &c, 1);
-		if (!check_char(c) && c != '\n')
-			error_map(data, 0);
 		if (bit == -1)
 			return (ft_printf("Error\n"));
 		if (c == '\n')
@@ -48,8 +48,7 @@ int	count_lines(char *filename, t_data *data)
 		error_map(data, 0);
 	else
 		len++;
-	close (fd);
-	return (len);
+	return (close (fd), len);
 }
 
 int	check_char(char c)

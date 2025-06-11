@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:02:54 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/11 11:12:42 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/11 14:41:48 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@ int	read_map(char *filename, t_data *data)
 	int		i;
 	int		fd;
 	char	*line;
-
+	
 	fd = open(filename, O_RDONLY);
-	if (fd <= -1)
+	if (fd == -1)
 		return (ft_printf("Error\n%sCan't read the file\n"), -1);
 	j = count_lines(filename, data);
 	if (j == -1)
+		return (-1);
+	data->map = malloc(sizeof(char *) * (j + 1));
+	if (!data->map)
 		return (-1);
 	i = 0;
 	while (i < j)
@@ -35,5 +38,5 @@ int	read_map(char *filename, t_data *data)
 		free(line);
 		i++;
 	}
-	return (close (fd), 0);
+	return (data->map[i] = NULL, close(fd), 0);
 }
