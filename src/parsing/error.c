@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:20:57 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/11 14:44:58 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/12 13:35:46 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,52 +45,35 @@ int	count_lines(char *filename, t_data *data)
 			len++;
 	}
 	if (c == '\n')
-		error_map(data, 0);
+		error_map(data);
 	else
 		len++;
 	return (close (fd), len);
 }
 
-int	check_char(char c)
+int	free_tab(char **tab)
 {
-	if (c == 'N' || c == '0' || c == '1' || c == 'S' || c == 'E' || c == 'W')
-		return (1);
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 	return (0);
 }
 
-int	check_letter(t_data *data)
-{
-	char	**map;
-	int		i;
-	int		j;
-
-	i = 0;
-	map = data->map;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (!check_char(map[i][j]))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-void	error_map(t_data *data, int i)
+void	error_map(t_data *data)
 {
 	int	j;
 
 	j = -1;
-	if (i == 1)
-	{
-		while (data->map[++j])
-			free(data->map[j]);
-		free(data->map);
-	}
+	if (data->file)
+		free_tab(data->file);
+	if (data->map)
+		free_tab(data->map);
 	ft_printf("Error\nInvalid map\n");
 	exit(0);
 }

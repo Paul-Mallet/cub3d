@@ -22,21 +22,29 @@ typedef struct s_img
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*window;
-	char		**map;
-	int			color_c;
-	int			color_f;
-
+	void	*mlx;
+	void	*window;
+	char	**file;
+	char	**map;
+	int		file_line_number;
+	int		map_line_number;
+	int		color_c;
+	int		color_f;
+	char	*text_so;
+	char	*text_no;
+	char	*text_ea;
+	char	*text_we;
 	
 }	t_data;
 
-int		read_map(char *filename, t_data *data);
+int		read_file(char *filename, t_data *data);
 int		check_format(char *argv);
 int		check_letter(t_data *data);
 int		count_lines(char *filename, t_data *data);
-void	error_map(t_data *data, int i);
+void	error_map(t_data *data);
 int		check_char(char c);
 int		get_color(t_data *data, char *line);
+int		free_tab(char **tab);
+int		read_map(t_data *data, int i);
 
 #endif

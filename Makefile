@@ -9,7 +9,7 @@ OBJDIR = obj
 LIBFTDIR = libft
 MINILIBXDIR = minilibx-linux
 
-SRCS =  src/parsing/check_colors.c src/parsing/error.c src/parsing/check_map.c src/main.c
+SRCS =  src/parsing/check_colors.c src/parsing/error.c src/parsing/check_letters.c src/parsing/check_map.c src/main.c
 
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 
