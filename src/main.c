@@ -6,13 +6,23 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/12 13:38:40 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/12 15:47:35 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	verif_textures(t_data *data)
+int	get_key(int keycode, t_data *data)
+{
+	if (keycode == 65307)
+	{
+		ft_printf("Exit\n");
+		close_game(data);
+	}
+	return (0);
+}
+
+int	verif_values(t_data *data)
 {
 	if (data->color_c == -1 || data->color_f == -1)
 		return (0);
@@ -68,6 +78,22 @@ int	get_texture(t_data *data, char *line)
 	return (free_tab(split_line), free(trimmed), 0);
 }
 
+void free_textures(t_data *data)
+{
+	if (data->text_we)
+		free(data->text_we);
+	if (data->text_ea)
+		free(data->text_ea);
+	if (data->text_no)
+		free(data->text_no);
+	if (data->text_so)
+		free(data->text_so);
+	data->text_we = NULL;
+	data->text_ea = NULL;
+	data->text_no = NULL;
+	data->text_so = NULL;
+}
+
 int	get_textures_and_colors(t_data *data)
 {
 	int		i;
@@ -85,11 +111,40 @@ int	get_textures_and_colors(t_data *data)
 		else if (identifier == 'S' || identifier == 'N'
 			|| identifier == 'W' || identifier == 'E')
 			get_texture(data, data->file[i]);
-		else if (verif_textures(data) && ft_strchr(data->file[i], '1'))
+		else if (verif_values(data) && ft_strchr(data->file[i], '1'))
 			return (read_map(data, i), 0);
 		i++;
 	}
 	return (ft_printf("map not found\n"), 1);
+}
+
+int	check_errors(t_data *data)
+{
+	if (get_textures_and_colors(data) == 1)
+		return (-1);
+	if (verif_textures(data) == -1)
+		return (-1);
+	if (check_letter(data) == -1)
+		return (-1);
+	return (0);
+}
+
+int	close_game(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	mlx_destroy_image(data->mlx, data->img_ea);
+	mlx_destroy_image(data->mlx, data->img_so);
+	mlx_destroy_image(data->mlx, data->img_no);
+	mlx_destroy_image(data->mlx, data->img_we);
+	mlx_destroy_display(data->mlx);
+	free_textures(data);
+	free(data->mlx);
+	free_tab(data->map);
+	free_tab(data->file);
+	exit(0);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -103,6 +158,7 @@ int	main(int argc, char **argv)
 		ft_printf("Error\nInvalid file\n");
 		return (1);
 	}
+	data.mlx = mlx_init();
 	data.text_ea = NULL;
 	data.text_we = NULL;
 	data.text_no = NULL;
@@ -112,6 +168,8 @@ int	main(int argc, char **argv)
 	data.color_c = -1;
 	data.color_f = -1;
 	read_file(argv[1], &data);
-	if (get_textures_and_colors(&data) == 1)
+	if (check_errors(&data) == -1)
 		error_map(&data);
+	// mlx_key_hook(data.window, get_key, &data);
+	close_game(&data);
 }

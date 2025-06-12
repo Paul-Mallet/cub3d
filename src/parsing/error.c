@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:20:57 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/12 13:35:46 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/12 15:16:54 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	free_tab(char **tab)
 {
 	int	i;
 
+	if (!tab)
+		return (0);
 	i = 0;
 	while (tab[i])
 	{

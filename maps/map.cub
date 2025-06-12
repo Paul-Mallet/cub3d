@@ -1,7 +1,7 @@
-NO ./textures/flash.xpm
-SO ./textures/sally.xpm
-WE ./textures/martin.xpm
-EA ./textures/fan.xpm
+NO ./textures/player.xpm
+SO ./textures/exit.xpm
+WE ./textures/floor.xpm
+EA ./textures/collectible.xpm
 F 120,100,250
 C 120,120,250
         1111111111111111111111111

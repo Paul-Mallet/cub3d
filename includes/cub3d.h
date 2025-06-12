@@ -34,6 +34,10 @@ typedef struct s_data
 	char	*text_no;
 	char	*text_ea;
 	char	*text_we;
+	void	*img_so;
+	void	*img_no;
+	void	*img_ea;
+	void	*img_we;
 	
 }	t_data;
 
@@ -45,6 +49,8 @@ void	error_map(t_data *data);
 int		check_char(char c);
 int		get_color(t_data *data, char *line);
 int		free_tab(char **tab);
+int		verif_textures(t_data *data);
 int		read_map(t_data *data, int i);
+int		close_game(t_data *data);
 
 #endif
