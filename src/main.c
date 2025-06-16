@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/12 15:47:35 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/16 11:30:16 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	get_texture(t_data *data, char *line)
 	return (free_tab(split_line), free(trimmed), 0);
 }
 
-void free_textures(t_data *data)
+void free_textures_and_images(t_data *data)
 {
 	if (data->text_we)
 		free(data->text_we);
@@ -88,6 +88,14 @@ void free_textures(t_data *data)
 		free(data->text_no);
 	if (data->text_so)
 		free(data->text_so);
+	if (data->img_ea)
+		mlx_destroy_image(data->mlx, data->img_ea);
+	if (data->img_so)
+		mlx_destroy_image(data->mlx, data->img_so);
+	if (data->img_no)
+		mlx_destroy_image(data->mlx, data->img_no);
+	if (data->img_we)
+		mlx_destroy_image(data->mlx, data->img_we);
 	data->text_we = NULL;
 	data->text_ea = NULL;
 	data->text_no = NULL;
@@ -125,6 +133,8 @@ int	check_errors(t_data *data)
 	if (verif_textures(data) == -1)
 		return (-1);
 	if (check_letter(data) == -1)
+		return (printf("Error\ninvalid char detected"), -1);
+	if (check_player(data) == -1)
 		return (-1);
 	return (0);
 }
@@ -134,12 +144,10 @@ int	close_game(t_data *data)
 	int	i;
 
 	i = 0;
-	mlx_destroy_image(data->mlx, data->img_ea);
-	mlx_destroy_image(data->mlx, data->img_so);
-	mlx_destroy_image(data->mlx, data->img_no);
-	mlx_destroy_image(data->mlx, data->img_we);
+	if (data->orientation)
+		free(data->orientation);
+	free_textures_and_images(data);
 	mlx_destroy_display(data->mlx);
-	free_textures(data);
 	free(data->mlx);
 	free_tab(data->map);
 	free_tab(data->file);
@@ -163,13 +171,16 @@ int	main(int argc, char **argv)
 	data.text_we = NULL;
 	data.text_no = NULL;
 	data.text_so = NULL;
+	data.img_ea = NULL;
+	data.img_we = NULL;
+	data.img_no = NULL;
+	data.img_so = NULL;
 	data.map = NULL;
+	data.orientation = NULL;
+	data.player_count = 0;
 	data.file_line_number = count_lines(argv[1], &data);
 	data.color_c = -1;
 	data.color_f = -1;
 	read_file(argv[1], &data);
-	if (check_errors(&data) == -1)
-		error_map(&data);
-	// mlx_key_hook(data.window, get_key, &data);
 	close_game(&data);
 }

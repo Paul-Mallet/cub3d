@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:49:41 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/12 15:41:57 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/16 10:18:16 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	verif_text_so(t_data *data)
 	if (!data->img_so)
 	{
 		printf("path not found for SOUTH texture\n");
-		// free(data->text_so);
-		// data->text_so = NULL;
+		data->img_so = NULL;
 		return (-1);
 	}
 	return (0);
@@ -43,8 +42,7 @@ int	verif_text_no(t_data *data)
 	if (!data->img_no)
 	{
 		printf("path not found for NORTH texture\n");
-		// free(data->text_no);
-		// data->text_no = NULL;
+		data->img_no = NULL;
 		return (-1);
 	}
 	return (0);
@@ -62,8 +60,7 @@ int	verif_text_ea(t_data *data)
 	if (!data->img_ea)
 	{
 		printf("path not found for EAST texture\n");
-		// free(data->text_ea);
-		// data->text_ea = NULL;
+		data->img_ea = NULL;
 		return (-1);
 	}
 	return (0);
@@ -81,8 +78,7 @@ int	verif_text_we(t_data *data)
 	if (!data->img_we)
 	{
 		printf("path not found for WEST texture\n");
-		// free(data->text_we);
-		// data->text_we = NULL;
+		data->img_we = NULL;
 		return (-1);
 	}
 	return (0);

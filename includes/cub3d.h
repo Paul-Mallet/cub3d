@@ -30,6 +30,7 @@ typedef struct s_data
 	int		map_line_number;
 	int		color_c;
 	int		color_f;
+	int		player_count;
 	char	*text_so;
 	char	*text_no;
 	char	*text_ea;
@@ -38,13 +39,13 @@ typedef struct s_data
 	void	*img_no;
 	void	*img_ea;
 	void	*img_we;
-	
+	char	*orientation;
 }	t_data;
 
 int		read_file(char *filename, t_data *data);
 int		check_format(char *argv);
 int		check_letter(t_data *data);
-int		count_lines(char *filename, t_data *data);
+int		count_lines(char *filename, t_data * data);
 void	error_map(t_data *data);
 int		check_char(char c);
 int		get_color(t_data *data, char *line);
@@ -52,5 +53,7 @@ int		free_tab(char **tab);
 int		verif_textures(t_data *data);
 int		read_map(t_data *data, int i);
 int		close_game(t_data *data);
+int		check_player(t_data * data);
+int		check_chars(char *str);
 
 #endif
