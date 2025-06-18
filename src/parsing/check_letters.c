@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:35:23 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/16 11:22:59 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/17 14:26:45 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	check_player_char(char c)
 	return (0);
 }
 
-int check_chars(char *str)
+int	check_chars(char *str)
 {
 	int	i;
-	
+
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (!check_char(str[i]))
 			return (0);
@@ -38,25 +38,6 @@ int	check_char(char c)
 	if (c == '0' || c == '1' || check_player_char(c))
 		return (1);
 	return (0);
-}
-
-int	is_whitespace(char c)
-{
-	if (c == ' ' || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
-
-void get_orientation(t_data *data, char c)
-{
-	if (c == 'N')
-		data->orientation = ft_strdup("North");
-	if (c == 'S')
-		data->orientation = ft_strdup("South");
-	if (c == 'E')
-		data->orientation = ft_strdup("East");
-	if (c == 'W')
-		data->orientation = ft_strdup("West");
 }
 
 int	check_player(t_data *data)
@@ -99,9 +80,11 @@ int	check_letter(t_data *data)
 		j = 0;
 		while (map[i][j])
 		{
-			while (map[i][j] && is_whitespace(map[i][j]))
+			while (map[i][j] && map[i][j] == ' ')
 				j++;
-			if (map [i][j] && !check_char(map[i][j]))
+			if (!map[i][j])
+				break ;
+			if (map[i][j] && !check_char(map[i][j]))
 				return (-1);
 			j++;
 		}

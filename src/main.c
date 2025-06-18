@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/16 11:30:16 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/18 12:57:22 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,11 +162,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (printf("Error : invalid arguments\n"));
 	if (!check_format(argv[1]))
-	{
-		ft_printf("Error\nInvalid file\n");
-		return (1);
-	}
-	data.mlx = mlx_init();
+		return (ft_printf("Error\nInvalid file\n"), 1);
 	data.text_ea = NULL;
 	data.text_we = NULL;
 	data.text_no = NULL;
@@ -179,8 +175,16 @@ int	main(int argc, char **argv)
 	data.orientation = NULL;
 	data.player_count = 0;
 	data.file_line_number = count_lines(argv[1], &data);
+	if (data.file_line_number == -1)
+		return (1);
 	data.color_c = -1;
 	data.color_f = -1;
+	data.mlx = mlx_init();
 	read_file(argv[1], &data);
+	if (check_errors(&data) == -1)
+		error_map(&data);
+	if (check_walls(&data) == -1)
+		return (close_game(&data));
 	close_game(&data);
+	return (0);
 }

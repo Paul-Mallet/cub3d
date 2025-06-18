@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:02:54 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/16 11:25:46 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/17 10:01:33 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,5 @@ int	read_map(t_data *data, int i)
 	}
 	data->map[j] = NULL;
 	data->map_line_number = j;
-	printf("MAP LINES : %d\n", i);
 	return (0);
 }
