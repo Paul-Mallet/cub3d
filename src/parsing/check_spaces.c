@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:50:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/19 11:39:03 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/19 13:23:32 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,37 @@ int	is_valid_char(char c)
 	return (c == '1' || c == ' ' || c == 'V');
 }
 
-static int	check_neighbor(t_data *data, int i, int j, int di, int dj)
+void	fill_tab(int *di, int *dj)
 {
+	di[0] = -1;
+	di[1] = -1;
+	di[2] = 0;
+	di[3] = 1;
+	di[4] = 1;
+	di[5] = 1;
+	di[6] = 0;
+	di[7] = -1;
+	dj[0] = 0;
+	dj[1] = 1;
+	dj[2] = 1;
+	dj[3] = 1;
+	dj[4] = 0;
+	dj[5] = -1;
+	dj[6] = -1;
+	dj[7] = -1;
+}
+
+static int	check_neighbor(t_data *data, int i, int j, int dir)
+{
+	int	di[8];
+	int	dj[8];
 	int	new_i;
 	int	new_j;
 	int	len;
 
-	new_i = i + di;
-	new_j = j + dj;
+	fill_tab(di, dj);
+	new_i = i + di[dir];
+	new_j = j + dj[dir];
 	if (new_i < 0 || new_i >= data->map_line_number)
 		return (0);
 	len = ft_strlen(data->map[new_i]);
@@ -39,19 +62,26 @@ static int	check_neighbor(t_data *data, int i, int j, int di, int dj)
 
 int	check_space(t_data *data, int i, int j)
 {
-	int	res;
+	int	len;
 
-	res = check_neighbor(data, i, j, -1, 0);
-	if (res == -1)
+	if (i < 0 || i >= data->map_line_number)
 		return (-1);
-	res = check_neighbor(data, i, j, 0, 1);
-	if (res == -1)
+	len = ft_strlen(data->map[i]);
+	if (j < 0 || j >= len)
 		return (-1);
-	res = check_neighbor(data, i, j, 0, -1);
-	if (res == -1)
-		return (-1);
-	res = check_neighbor(data, i, j, 1, 0);
-	if (res == -1)
+	if (data->map[i][j] == 'V')
+		return (0);
+	if (data->map[i][j] != ' ')
+		return (0);
+	data->map[i][j] = 'V';
+	if (check_neighbor(data, i, j, 0) == -1
+		|| check_neighbor(data, i, j, 1) == -1
+		|| check_neighbor(data, i, j, 2) == -1
+		|| check_neighbor(data, i, j, 3) == -1
+		|| check_neighbor(data, i, j, 4) == -1
+		|| check_neighbor(data, i, j, 5) == -1
+		|| check_neighbor(data, i, j, 6) == -1
+		|| check_neighbor(data, i, j, 7) == -1)
 		return (-1);
 	return (0);
 }

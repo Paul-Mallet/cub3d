@@ -6,21 +6,11 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/19 11:04:29 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/19 13:31:54 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-
-int	verif_values(t_data *data)
-{
-	if (data->color_c == -1 || data->color_f == -1)
-		return (0);
-	if (!data->text_ea || !data->text_we || !data->text_no || !data->text_so)
-		return (0);
-	return (1);
-}
 
 int	check_color(t_data *data, int *components, char identifier)
 {
@@ -71,6 +61,30 @@ int	get_color(t_data *data, char *line)
 	return (0);
 }
 
+static int	set_texture(char **split, char *trim, char **tex, char *name)
+{
+	char	*tmp;
+
+	if (*tex)
+	{
+		free_tab(split);
+		free(trim);
+		ft_printf("Error: Duplicate %s texture\n", name);
+		return (1);
+	}
+	tmp = ft_strdup(trim);
+	free(trim);
+	if (!tmp)
+	{
+		free_tab(split);
+		ft_printf("Error: malloc failed\n");
+		return (1);
+	}
+	*tex = tmp;
+	free_tab(split);
+	return (0);
+}
+
 int	get_texture(t_data *data, char *line)
 {
 	char	**split_line;
@@ -78,44 +92,23 @@ int	get_texture(t_data *data, char *line)
 
 	split_line = ft_split(line, ' ');
 	if (!split_line || !split_line[0] || !split_line[1])
-		return (free_tab(split_line),
-			ft_printf("Error: invalid texture line\n"), 1);
+		return (ft_printf("Error: invalid texture line : %s\n", line),
+			free_tab(split_line), 1);
 	trimmed = ft_strtrim(split_line[1], "\n");
 	if (!trimmed)
-		return (free_tab(split_line),
-			ft_printf("Error: malloc failed\n"), 1);
+		return (ft_printf("Error: malloc failed\n"), free_tab(split_line), 1);
 	if (ft_strcmp(split_line[0], "WE") == 0)
-	{
-		if (data->text_we)
-			return (free_tab(split_line), free(trimmed),
-				ft_printf("Duplicate WE texture\n"), 1);
-		data->text_we = ft_strdup(trimmed);
-	}
-	else if (ft_strcmp(split_line[0], "EA") == 0)
-	{
-		if (data->text_ea)
-			return (free_tab(split_line), free(trimmed),
-				ft_printf("Duplicate EA texture\n"), 1);
-		data->text_ea = ft_strdup(trimmed);
-	}
-	else if (ft_strcmp(split_line[0], "NO") == 0)
-	{
-		if (data->text_no)
-			return (free_tab(split_line), free(trimmed),
-				ft_printf("Duplicate NO texture\n"), 1);
-		data->text_no = ft_strdup(trimmed);
-	}
-	else if (ft_strcmp(split_line[0], "SO") == 0)
-	{
-		if (data->text_so)
-			return (free_tab(split_line), free(trimmed),
-				ft_printf("Duplicate SO texture\n"), 1);
-		data->text_so = ft_strdup(trimmed);
-	}
-	else
-		return (free_tab(split_line), free(trimmed),
-			ft_printf("Unknown texture identifier: %s\n", split_line[0]), 1);
-	return (free_tab(split_line), free(trimmed), 0);
+		return (set_texture(split_line, trimmed, &data->text_we, "WE"));
+	if (ft_strcmp(split_line[0], "EA") == 0)
+		return (set_texture(split_line, trimmed, &data->text_ea, "EA"));
+	if (ft_strcmp(split_line[0], "NO") == 0)
+		return (set_texture(split_line, trimmed, &data->text_no, "NO"));
+	if (ft_strcmp(split_line[0], "SO") == 0)
+		return (set_texture(split_line, trimmed, &data->text_so, "SO"));
+	ft_printf("Unknown texture identifier: %s\n", split_line[0]);
+	free_tab(split_line);
+	free(trimmed);
+	return (1);
 }
 
 int	get_textures_and_colors(t_data *data)
@@ -129,15 +122,20 @@ int	get_textures_and_colors(t_data *data)
 		identifier = data->file[i][0];
 		if (identifier == 'C' || identifier == 'F')
 		{
+			if (check_duplicates(identifier, data) == 1)
+				return (1);
 			if (get_color(data, data->file[i]) == 1)
 				return (1);
 		}
 		else if (identifier == 'S' || identifier == 'N'
 			|| identifier == 'W' || identifier == 'E')
-			get_texture(data, data->file[i]);
+		{
+			if (get_texture(data, data->file[i]) == 1)
+				return (1);
+		}
 		else if (verif_values(data) && ft_strchr(data->file[i], '1'))
 			return (read_map(data, i), 0);
 		i++;
 	}
-	return (ft_printf("map not found\n"), 1);
+	return (print_error(data), 1);
 }

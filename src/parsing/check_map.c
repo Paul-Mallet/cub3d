@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:02:54 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/19 11:30:17 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/19 12:12:23 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	read_map(t_data *data, int i)
 		return (-1);
 	while (data->file[i])
 	{
+		if (!ft_strcmp(data->file[i], "\n") || !ft_strchr(data->file[i], '1'))
+			break ;
 		data->map[j] = ft_strdup(data->file[i]);
 		tmp = data->map[j];
 		data->map[j] = ft_strtrim(data->map[j], "\n");

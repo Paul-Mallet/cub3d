@@ -57,6 +57,9 @@ int		check_walls(t_data *data);
 void	get_orientation(t_data *data, char c);
 int		count_cols(t_data *data);
 int		get_textures_and_colors(t_data *data);
+int		verif_values(t_data *data);
 int		check_space(t_data *data, int i, int j);
+int		check_duplicates(char identifier, t_data *data);
+int		print_error(t_data *data);
 
 #endif

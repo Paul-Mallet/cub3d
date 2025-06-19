@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:07:37 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/19 11:31:00 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/19 12:39:48 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	check_line(char *line)
 
 int	flood_fill(int x, int y, t_fill_data *fill)
 {
-	if (x < 0 || y < 0 || x >= fill->cols || y >= fill->rows)
+	int	len;
+
+	len = ft_strlen(fill->map[y]);
+	if (x < 0 || y < 0 || x >= len || y >= fill->rows)
 		return (-1);
 	if (fill->map[y][x] == '1' || fill->map[y][x] == 'V')
 		return (0);
@@ -47,17 +50,16 @@ int	flood_fill(int x, int y, t_fill_data *fill)
 	return (0);
 }
 
-t_fill_data	init_fill(t_data *data)
+int	init_fill(t_data *data, t_fill_data	*fill)
 {
-	t_fill_data	fill;
 	char		**map_copy;
 	int			i;
 
 	map_copy = malloc(sizeof(char *) * (data->map_line_number + 2));
 	if (!map_copy)
 	{
-		fill.map = NULL;
-		return (fill);
+		fill->map = NULL;
+		return (1);
 	}
 	i = 0;
 	while (data->map[i])
@@ -66,41 +68,37 @@ t_fill_data	init_fill(t_data *data)
 		i++;
 	}
 	map_copy[i] = NULL;
-	fill.map = map_copy;
-	fill.rows = data->map_line_number;
-	fill.cols = data->map_col_number;
-	return (fill);
+	fill->map = map_copy;
+	fill->rows = data->map_line_number;
+	fill->cols = data->map_col_number;
+	return (0);
 }
 
 int	check_walls(t_data *data)
 {
-	// int			i;
-	// int			j;
-	// t_fill_data	fill;
+	int			i;
+	int			j;
+	t_fill_data	fill;
 
 	if (check_spaces(data) == -1)
 		return (-1);
-	// fill = init_fill(data);
-	// if (!fill.map)
-	// 	return (-1);
-	// i = 0;
-	// // while (fill.map[i++])
-	// // 	printf("%s\n", fill.map[i]);
-	// i++;
-	// while (fill.map[i])
-	// {
-		
-	// 	j = 0;
-	// 	while (fill.map[i][j])
-	// 	{
-	// 		if (fill.map[i][j] == '0')
-	// 		{
-	// 			if (flood_fill(j, i, &fill) == -1)
-	// 				return (free_tab(fill.map), -1);
-	// 		}
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-	return (0);
+	if (init_fill(data, &fill) == 1)
+		return (-1);
+	i = 0;
+	while (fill.map[i])
+	{
+		j = 0;
+		while (fill.map[i][j])
+		{
+			if (fill.map[i][j] == '0')
+			{
+				if (flood_fill(j, i, &fill) == -1)
+					return (printf("Error: map is not closed\n"),
+						free_tab(fill.map), -1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (free_tab(fill.map), 0);
 }
