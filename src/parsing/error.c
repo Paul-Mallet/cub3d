@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:20:57 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/17 13:49:06 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/19 11:07:18 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,28 @@ int	check_format(char *argv)
 		|| argv[i + 2] == 'u' || argv[i + 3] == 'b')
 		return (1);
 	return (0);
+}
+
+int	count_cols(t_data *data)
+{
+	int	i;
+	int	j;
+	int	max;
+
+	i = 0;
+	max = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (j > max)
+				max = j;
+			j++;
+		}
+		i++;
+	}
+	return (max);
 }
 
 int	count_lines(char *filename, t_data *data)

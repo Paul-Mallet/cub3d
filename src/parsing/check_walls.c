@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:07:37 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/18 12:57:10 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/19 11:31:00 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,81 @@ int	check_line(char *line)
 	return (1);
 }
 
-static int	is_valid_char(char c)
+int	flood_fill(int x, int y, t_fill_data *fill)
 {
-	return (c == '1' || c == ' ');
+	if (x < 0 || y < 0 || x >= fill->cols || y >= fill->rows)
+		return (-1);
+	if (fill->map[y][x] == '1' || fill->map[y][x] == 'V')
+		return (0);
+	if (fill->map[y][x] == ' ')
+		return (-1);
+	fill->map[y][x] = 'V';
+	if (flood_fill(x + 1, y, fill) == -1
+		|| flood_fill(x - 1, y, fill) == -1
+		|| flood_fill(x, y + 1, fill) == -1
+		|| flood_fill(x, y - 1, fill) == -1
+		|| flood_fill(x + 1, y + 1, fill) == -1
+		|| flood_fill(x - 1, y - 1, fill) == -1
+		|| flood_fill(x - 1, y + 1, fill) == -1
+		|| flood_fill(x + 1, y - 1, fill) == -1)
+		return (-1);
+	return (0);
 }
 
-int check_walls(t_data *data)
+t_fill_data	init_fill(t_data *data)
 {
+	t_fill_data	fill;
+	char		**map_copy;
+	int			i;
+
+	map_copy = malloc(sizeof(char *) * (data->map_line_number + 2));
+	if (!map_copy)
+	{
+		fill.map = NULL;
+		return (fill);
+	}
+	i = 0;
+	while (data->map[i])
+	{
+		map_copy[i] = ft_strdup(data->map[i]);
+		i++;
+	}
+	map_copy[i] = NULL;
+	fill.map = map_copy;
+	fill.rows = data->map_line_number;
+	fill.cols = data->map_col_number;
+	return (fill);
+}
+
+int	check_walls(t_data *data)
+{
+	// int			i;
+	// int			j;
+	// t_fill_data	fill;
+
 	if (check_spaces(data) == -1)
-		return (-1);	
+		return (-1);
+	// fill = init_fill(data);
+	// if (!fill.map)
+	// 	return (-1);
+	// i = 0;
+	// // while (fill.map[i++])
+	// // 	printf("%s\n", fill.map[i]);
+	// i++;
+	// while (fill.map[i])
+	// {
+		
+	// 	j = 0;
+	// 	while (fill.map[i][j])
+	// 	{
+	// 		if (fill.map[i][j] == '0')
+	// 		{
+	// 			if (flood_fill(j, i, &fill) == -1)
+	// 				return (free_tab(fill.map), -1);
+	// 		}
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	return (0);
 }

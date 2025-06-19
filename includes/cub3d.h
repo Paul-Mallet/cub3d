@@ -9,17 +9,6 @@
 # include "../libft/printf/ft_printf.h"
 # include "../minilibx-linux/mlx.h"
 
-typedef struct s_img
-{
-	void	*img_ptr;
-	int		*data;
-	int		width;
-	int		height;
-	int		bpp;
-	int		size_line;
-	int		endian;
-}	t_img;
-
 typedef struct s_data
 {
 	void	*mlx;
@@ -28,6 +17,7 @@ typedef struct s_data
 	char	**map;
 	int		file_line_number;
 	int		map_line_number;
+	int		map_col_number;
 	int		color_c;
 	int		color_f;
 	int		player_count;
@@ -42,6 +32,13 @@ typedef struct s_data
 	char	*orientation;
 }	t_data;
 
+typedef struct s_fill_data
+{
+	char	**map;
+	int		rows;
+	int		cols;
+}	t_fill_data;
+
 int		read_file(char *filename, t_data *data);
 int		check_format(char *argv);
 int		check_letter(t_data *data);
@@ -55,5 +52,11 @@ int		read_map(t_data *data, int i);
 int		close_game(t_data *data);
 int		check_player(t_data * data);
 int		check_chars(char *str);
+int		check_spaces(t_data *data);
+int		check_walls(t_data *data);
+void	get_orientation(t_data *data, char c);
+int		count_cols(t_data *data);
+int		get_textures_and_colors(t_data *data);
+int		check_space(t_data *data, int i, int j);
 
 #endif
