@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:50:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/19 11:35:05 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/19 11:39:03 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,6 @@ static int	check_neighbor(t_data *data, int i, int j, int di, int dj)
 		return (-1);
 	if (data->map[new_i][new_j] == ' ')
 		return (check_space(data, new_i, new_j));
-	return (0);
-}
-
-int	check_corners(t_data *data, int i, int j)
-{
-	int	res;
-
-	res = check_neighbor(data, i, j, 1, -1);
-	if (res == -1)
-		return (-1);
-	res = check_neighbor(data, i, j, -1, 1);
-	if (res == -1)
-		return (-1);
-	res = check_neighbor(data, i, j, -1, -1);
-	if (res == -1)
-		return (-1);
-	res = check_neighbor(data, i, j, 1, 1);
-	if (res == -1)
-		return (-1);
 	return (0);
 }
 

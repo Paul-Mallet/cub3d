@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 10:59:38 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/19 11:00:59 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/19 11:39:01 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,25 @@ int	close_game(t_data *data)
 	free_tab(data->map);
 	free_tab(data->file);
 	exit(0);
+	return (0);
+}
+
+
+int	check_corners(t_data *data, int i, int j)
+{
+	int	res;
+
+	res = check_neighbor(data, i, j, 1, -1);
+	if (res == -1)
+		return (-1);
+	res = check_neighbor(data, i, j, -1, 1);
+	if (res == -1)
+		return (-1);
+	res = check_neighbor(data, i, j, -1, -1);
+	if (res == -1)
+		return (-1);
+	res = check_neighbor(data, i, j, 1, 1);
+	if (res == -1)
+		return (-1);
 	return (0);
 }
