@@ -61,5 +61,6 @@ int		verif_values(t_data *data);
 int		check_space(t_data *data, int i, int j);
 int		check_duplicates(char identifier, t_data *data);
 int		print_error(t_data *data);
+int		check_player_char(char c);
 
 #endif

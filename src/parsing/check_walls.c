@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:07:37 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/19 12:39:48 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/23 09:46:50 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int	check_walls(t_data *data)
 			if (fill.map[i][j] == '0')
 			{
 				if (flood_fill(j, i, &fill) == -1)
-					return (printf("Error: map is not closed\n"),
-						free_tab(fill.map), -1);
+					return (printf("\033[35mError: map is not closed"
+							"\035\n\033[0m"), free_tab(fill.map), -1);
 			}
 			j++;
 		}
