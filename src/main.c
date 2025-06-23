@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/19 12:50:54 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/23 13:28:01 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_errors(t_data *data)
 {
-	if (get_textures_and_colors(data) == 1
+	if (get_textures_and_colors(data) == -1
 		|| verif_textures(data) == -1
 		|| check_player(data) == -1)
 		return (-1);

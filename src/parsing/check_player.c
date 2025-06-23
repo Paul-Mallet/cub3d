@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:26:16 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/23 09:51:37 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/23 13:25:31 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,31 @@ int	check_player_char(char c)
 	return (0);
 }
 
+int	check_player_surrounded(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (check_player_char(data->map[i][j]))
+			{
+				if (i == 0 || j == 0 || !data->map[i + 1] || !data->map[i][j + 1])
+					return (printf("Error\nPlayer at the edge of the map\n"), -1);
+				if (data->map[i - 1][j] == ' ' || data->map[i + 1][j] == ' ' ||
+					data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')
+					return (printf("Error\nPlayer is not properly surrounded\n"), -1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 int	check_player(t_data *data)
 {
 	int	i;
@@ -46,7 +71,7 @@ int	check_player(t_data *data)
 		{
 			if (data->map[i][j] && check_player_char(data->map[i][j])
 				&& data->player_count == 1)
-				return (printf("Error\nToo many players\n"), 0);
+				return (printf("Error\nToo many players\n"), -1);
 			if (data->map[i][j] && check_player_char(data->map[i][j]))
 			{
 				data->player_count++;
@@ -56,5 +81,7 @@ int	check_player(t_data *data)
 		}
 		i++;
 	}
-	return (1);
+	if (data->player_count != 1)
+		return (printf("No player found"));
+	return (0);
 }

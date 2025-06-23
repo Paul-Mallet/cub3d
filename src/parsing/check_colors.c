@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/19 13:31:54 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/23 13:23:48 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,13 @@ int	get_color(t_data *data, char *line)
 		components[j++] = ft_atoi(&line[i]);
 		while (line[i] && ft_isdigit(line[i]))
 			i++;
-		while (line[i] && !ft_isdigit(line[i]))
+		while (line[i] && line[i] == ',')
 			i++;
 	}
-	if (j == 3)
-	{
-		if (check_color(data, components, identifier) == 1)
-			return (error_map(data), 1);
-	}
+	if (line[i] && !ft_isdigit(line[i]) && ft_strcmp(&line[i], "\n"))
+		return (printf("Error: invalid char detected in color \n"), -1);
+	if (j == 3 && check_color(data, components, identifier) == 1)
+			return (-1);
 	return (0);
 }
 
@@ -122,20 +121,20 @@ int	get_textures_and_colors(t_data *data)
 		identifier = data->file[i][0];
 		if (identifier == 'C' || identifier == 'F')
 		{
-			if (check_duplicates(identifier, data) == 1)
+			if (check_duplicates(identifier, data) == -1)
 				return (1);
-			if (get_color(data, data->file[i]) == 1)
-				return (1);
+			if (get_color(data, data->file[i]) == -1)
+				return (-1);
 		}
 		else if (identifier == 'S' || identifier == 'N'
 			|| identifier == 'W' || identifier == 'E')
 		{
-			if (get_texture(data, data->file[i]) == 1)
+			if (get_texture(data, data->file[i]) == -1)
 				return (1);
 		}
 		else if (verif_values(data) && ft_strchr(data->file[i], '1'))
 			return (read_map(data, i), 0);
 		i++;
 	}
-	return (print_error(data), 1);
+	return (print_error(data), -1);
 }
