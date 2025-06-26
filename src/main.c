@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 15:09:14 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/26 16:01:47 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,12 @@ int	main(int argc, char **argv)
 	if (check_walls(&data) == -1)
 		return (close_game(&data));
 	close_game(&data);
+	init(&data);
+	mlx_hook(data.mlx.mlx_win,
+		DestroyNotify, StructureNotifyMask, &handle_close, &data);
+	mlx_hook(data.mlx.mlx_win,
+		KeyPress, KeyPressMask, &handle_keys, &data);
+	render(&data);
+	mlx_loop(data.mlx.mlx_co);
 	return (0);
 }
