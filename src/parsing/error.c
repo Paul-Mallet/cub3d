@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:20:57 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/19 11:07:18 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/25 15:24:19 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	check_format(char *argv)
 
 	i = ft_strlen(argv);
 	i -= 4;
-	if (argv[i] == '.' || argv[i + 1] == 'c'
-		|| argv[i + 2] == 'u' || argv[i + 3] == 'b')
+	if (argv[i] == '.' && argv[i + 1] == 'c'
+		&& argv[i + 2] == 'u' && argv[i + 3] == 'b')
 		return (1);
 	return (0);
 }

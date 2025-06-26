@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/23 13:23:48 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/23 14:18:44 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	get_color(t_data *data, char *line)
 	if (line[i] && !ft_isdigit(line[i]) && ft_strcmp(&line[i], "\n"))
 		return (printf("Error: invalid char detected in color \n"), -1);
 	if (j == 3 && check_color(data, components, identifier) == 1)
-			return (-1);
+		return (-1);
 	return (0);
 }
 

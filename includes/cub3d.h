@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
+/*   Updated: 2025/06/25 15:18:38 by bfiquet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -42,7 +54,7 @@ typedef struct s_fill_data
 int		read_file(char *filename, t_data *data);
 int		check_format(char *argv);
 int		check_letter(t_data *data);
-int		count_lines(char *filename, t_data * data);
+int		count_lines(char *filename, t_data *data);
 void	error_map(t_data *data);
 int		check_char(char c);
 int		get_color(t_data *data, char *line);
@@ -50,7 +62,7 @@ int		free_tab(char **tab);
 int		verif_textures(t_data *data);
 int		read_map(t_data *data, int i);
 int		close_game(t_data *data);
-int		check_player(t_data * data);
+int		check_player(t_data *data);
 int		check_chars(char *str);
 int		check_spaces(t_data *data);
 int		check_walls(t_data *data);

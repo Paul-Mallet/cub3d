@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:26:16 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/23 13:25:31 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/23 14:23:59 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	get_orientation(t_data *data, char c)
 	if (c == 'W')
 		data->orientation = ft_strdup("West");
 }
-
 
 int	check_player_char(char c)
 {
@@ -45,11 +44,14 @@ int	check_player_surrounded(t_data *data)
 		{
 			if (check_player_char(data->map[i][j]))
 			{
-				if (i == 0 || j == 0 || !data->map[i + 1] || !data->map[i][j + 1])
-					return (printf("Error\nPlayer at the edge of the map\n"), -1);
+				if (i == 0 || j == 0 || !data->map[i + 1]
+					|| !data->map[i][j + 1])
+					return (printf("Error\nPlayer at the"
+							" edge of the map\n"), -1);
 				if (data->map[i - 1][j] == ' ' || data->map[i + 1][j] == ' ' ||
 					data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')
-					return (printf("Error\nPlayer is not properly surrounded\n"), -1);
+					return (printf("Error\nPlayer is not "
+							"properly surrounded\n"), -1);
 			}
 			j++;
 		}
@@ -57,6 +59,7 @@ int	check_player_surrounded(t_data *data)
 	}
 	return (0);
 }
+
 int	check_player(t_data *data)
 {
 	int	i;
@@ -82,6 +85,6 @@ int	check_player(t_data *data)
 		i++;
 	}
 	if (data->player_count != 1)
-		return (printf("No player found"));
+		return (printf("No player found\n"));
 	return (0);
 }

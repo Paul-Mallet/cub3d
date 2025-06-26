@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:07:37 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/23 09:46:50 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/25 15:18:18 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	check_line(char *line)
 	while (line[i])
 	{
 		if (line[i] != '1' && line [i] != ' ')
-			return (0);
+			return (printf("\033[35mError: last line"
+					"is not closed\035\n\033[0m"), 0);
 		i++;
 	}
 	return (1);
@@ -80,9 +81,8 @@ int	check_walls(t_data *data)
 	int			j;
 	t_fill_data	fill;
 
-	if (check_spaces(data) == -1)
-		return (-1);
-	if (init_fill(data, &fill) == 1)
+	if (!check_line(data->map[data->map_line_number -1])
+		|| check_spaces(data) == -1 || init_fill(data, &fill) == 1)
 		return (-1);
 	i = 0;
 	while (fill.map[i])
