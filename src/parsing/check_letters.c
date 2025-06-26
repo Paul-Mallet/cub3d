@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:35:23 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 15:59:36 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/26 16:20:55 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	check_letter(t_data *data)
 	int		j;
 
 	i = 0;
-	map = data->map;
+	map = data->parsing.map;
 	while (map[i])
 	{
 		j = 0;

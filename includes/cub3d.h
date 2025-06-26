@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 15:56:26 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/26 16:43:01 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,6 +270,29 @@ typedef struct s_floor
 	int			cell_y;
 }	t_floor;
 
+typedef struct s_parsing
+{
+	char	**file;
+	char	**map;
+	int		file_line_number;
+	int		map_line_number;
+	int		map_col_number;
+	int		color_c;
+	int		color_f;
+	int		player_count;
+	int		player_x;
+	int		player_y;
+	char	*text_so;
+	char	*text_no;
+	char	*text_ea;
+	char	*text_we;
+	void	*img_so;
+	void	*img_no;
+	void	*img_ea;
+	void	*img_we;
+	char	*orientation;
+}	t_parsing;
+
 typedef struct s_data
 {
 	t_mlx		mlx;
@@ -314,29 +337,6 @@ void		print_data(t_data *data);
 
 #endif
 
-typedef struct s_parsing
-{
-	char	**file;
-	char	**map;
-	int		file_line_number;
-	int		map_line_number;
-	int		map_col_number;
-	int		color_c;
-	int		color_f;
-	int		player_count;
-	int		player_x;
-	int		player_y;
-	char	*text_so;
-	char	*text_no;
-	char	*text_ea;
-	char	*text_we;
-	void	*img_so;
-	void	*img_no;
-	void	*img_ea;
-	void	*img_we;
-	char	*orientation;
-}	t_parsing;
-
 typedef struct s_fill_data
 {
 	char	**map;
@@ -354,7 +354,7 @@ int		get_color(t_data *data, char *line);
 int		free_tab(char **tab);
 int		verif_textures(t_data *data);
 int		read_map(t_data *data, int i);
-int		close_game(t_data *data);
+int		free_parsing(t_data *data);
 int		check_player(t_data *data);
 int		check_chars(char *str);
 int		check_spaces(t_data *data);

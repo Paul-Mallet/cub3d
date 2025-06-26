@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:20:57 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 15:59:57 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/26 16:19:44 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int	count_cols(t_data *data)
 
 	i = 0;
 	max = 0;
-	while (data->map[i])
+	while (data->parsing.map[i])
 	{
 		j = 0;
-		while (data->map[i][j])
+		while (data->parsing.map[i][j])
 		{
 			if (j > max)
 				max = j;
@@ -94,10 +94,10 @@ void	error_map(t_data *data)
 	int	j;
 
 	j = -1;
-	if (data->file)
-		free_tab(data->file);
-	if (data->map)
-		free_tab(data->map);
+	if (data->parsing.file)
+		free_tab(data->parsing.file);
+	if (data->parsing.map)
+		free_tab(data->parsing.map);
 	ft_printf("Error\nInvalid map\n");
 	exit(0);
 }

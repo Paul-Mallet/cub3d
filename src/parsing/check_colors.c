@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 15:59:34 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/26 16:25:36 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	check_color(t_data *data, int *components, char identifier)
 		i++;
 	}
 	color = (components[0] << 16) | (components[1] << 8) | components[2];
-	if (identifier == 'C' && data->color_c == -1)
-		data->color_c = color;
-	if (identifier == 'F' && data->color_f == -1)
-		data->color_f = color;
+	if (identifier == 'C' && data->parsing.color_c == -1)
+		data->parsing.color_c = color;
+	if (identifier == 'F' && data->parsing.color_f == -1)
+		data->parsing.color_f = color;
 	return (0);
 }
 
@@ -97,13 +97,13 @@ int	get_texture(t_data *data, char *line)
 	if (!trimmed)
 		return (ft_printf("Error: malloc failed\n"), free_tab(split_line), 1);
 	if (ft_strcmp(split_line[0], "WE") == 0)
-		return (set_texture(split_line, trimmed, &data->text_we, "WE"));
+		return (set_texture(split_line, trimmed, &data->parsing.text_we, "WE"));
 	if (ft_strcmp(split_line[0], "EA") == 0)
-		return (set_texture(split_line, trimmed, &data->text_ea, "EA"));
+		return (set_texture(split_line, trimmed, &data->parsing.text_ea, "EA"));
 	if (ft_strcmp(split_line[0], "NO") == 0)
-		return (set_texture(split_line, trimmed, &data->text_no, "NO"));
+		return (set_texture(split_line, trimmed, &data->parsing.text_no, "NO"));
 	if (ft_strcmp(split_line[0], "SO") == 0)
-		return (set_texture(split_line, trimmed, &data->text_so, "SO"));
+		return (set_texture(split_line, trimmed, &data->parsing.text_so, "SO"));
 	ft_printf("Unknown texture identifier: %s\n", split_line[0]);
 	free_tab(split_line);
 	free(trimmed);
@@ -116,23 +116,23 @@ int	get_textures_and_colors(t_data *data)
 	char	identifier;
 
 	i = 0;
-	while (data->file[i])
+	while (data->parsing.file[i])
 	{
-		identifier = data->file[i][0];
+		identifier = data->parsing.file[i][0];
 		if (identifier == 'C' || identifier == 'F')
 		{
 			if (check_duplicates(identifier, data) == -1)
 				return (1);
-			if (get_color(data, data->file[i]) == -1)
+			if (get_color(data, data->parsing.file[i]) == -1)
 				return (-1);
 		}
 		else if (identifier == 'S' || identifier == 'N'
 			|| identifier == 'W' || identifier == 'E')
 		{
-			if (get_texture(data, data->file[i]) == -1)
+			if (get_texture(data, data->parsing.file[i]) == -1)
 				return (1);
 		}
-		else if (verif_values(data) && ft_strchr(data->file[i], '1'))
+		else if (verif_values(data) && ft_strchr(data->parsing.file[i], '1'))
 			return (read_map(data, i), 0);
 		i++;
 	}

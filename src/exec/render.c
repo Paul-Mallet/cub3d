@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:27 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 15:50:03 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/26 17:31:20 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void	digit_diff_analyzer(t_data *data)
 			grid->map_y += ray->step_y;
 			grid->wall.which_side = 1;
 		}
-		if (world_map[grid->map_x][grid->map_y] > 0)
+		printf("x : %d y : %d\n", grid->map_x, grid->map_y);
+		if (data->parsing.map[grid->map_x][grid->map_y] > '0')
 			grid->wall.is_hit = true;
 	}
 }
@@ -116,7 +117,7 @@ void	put_texel_color(t_data *data,
 	draw = &data->draw;
 	screen = &data->screen;
 	y = draw->draw_start;
-	tex->tex_index = world_map[grid->map_x][grid->map_y] - 1;
+	tex->tex_index = data->parsing.map[grid->map_x][grid->map_y] - 1;
 	tex->step = 1.0 * TEX_HEIGHT / draw->line_height;
 	tex->pos = (draw->draw_start - S_HEIGHT / 2 + draw->line_height / 2)
 		* tex->step;
@@ -293,14 +294,14 @@ void	load_image(t_data *data,
 void	generate_textures(t_data *data,
 	int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH])
 {
-	load_image(data, textures[0], "./assets/eagle.xpm");
-	load_image(data, textures[1], "./assets/bluestone.xpm");
-	load_image(data, textures[2], "./assets/barrel.xpm");
-	load_image(data, textures[3], "./assets/colorstone.xpm");
-	load_image(data, textures[4], "./assets/eagle.xpm");
-	load_image(data, textures[5], "./assets/bluestone.xpm");
-	load_image(data, textures[6], "./assets/barrel.xpm");
-	load_image(data, textures[7], "./assets/colorstone.xpm");
+	load_image(data, textures[0], data->parsing.text_ea);
+	load_image(data, textures[1], data->parsing.text_ea);
+	load_image(data, textures[2], data->parsing.text_ea);
+	load_image(data, textures[3], data->parsing.text_ea);
+	load_image(data, textures[4], data->parsing.text_ea);
+	load_image(data, textures[5], data->parsing.text_ea);
+	load_image(data, textures[6], data->parsing.text_ea);
+	load_image(data, textures[7], data->parsing.text_ea);
 }
 
 void	draw_tex_buff(t_data *data, u_int32_t tex_buff[S_HEIGHT][S_WIDTH])

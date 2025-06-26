@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:02:54 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 15:59:46 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/26 16:48:26 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	read_file(char *filename, t_data *data)
 	j = count_lines(filename, data);
 	if (j == -1)
 		return (-1);
-	data->file = malloc(sizeof(char *) * (j + 1));
-	if (!data->file)
+	data->parsing.file = malloc(sizeof(char *) * (j + 1));
+	if (!data->parsing.file)
 		return (-1);
 	i = 0;
 	while (i < j)
@@ -34,11 +34,11 @@ int	read_file(char *filename, t_data *data)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		data->file[i] = ft_strdup(line);
+		data->parsing.file[i] = ft_strdup(line);
 		free(line);
 		i++;
 	}
-	return (data->file[i] = NULL, close(fd), 0);
+	return (data->parsing.file[i] = NULL, close(fd), 0);
 }
 
 int	read_map(t_data *data, int i)
@@ -48,22 +48,23 @@ int	read_map(t_data *data, int i)
 	int		lines;
 
 	j = 0;
-	lines = data->file_line_number - i;
-	data->map = malloc (sizeof(char *) * (lines + 1));
-	if (!data->map)
+	lines = data->parsing.file_line_number - i;
+	data->parsing.map = malloc (sizeof(char *) * (lines + 1));
+	if (!data->parsing.map)
 		return (-1);
-	while (data->file[i])
+	while (data->parsing.file[i])
 	{
-		if (!ft_strcmp(data->file[i], "\n") || !ft_strchr(data->file[i], '1'))
+		if (!ft_strcmp(data->parsing.file[i], "\n")
+			|| !ft_strchr(data->parsing.file[i], '1'))
 			break ;
-		data->map[j] = ft_strdup(data->file[i]);
-		tmp = data->map[j];
-		data->map[j] = ft_strtrim(data->map[j], "\n");
+		data->parsing.map[j] = ft_strdup(data->parsing.file[i]);
+		tmp = data->parsing.map[j];
+		data->parsing.map[j] = ft_strtrim(data->parsing.map[j], "\n");
 		free(tmp);
 		i++;
 		j++;
 	}
-	data->map[j] = NULL;
-	data->map_line_number = j;
+	data->parsing.map[j] = NULL;
+	data->parsing.map_line_number = j;
 	return (0);
 }
