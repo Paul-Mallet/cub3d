@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:44:43 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/26 12:39:59 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/26 15:30:02 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,8 +236,8 @@ void	speed_modifiers(t_data *data)
 
 	time = &data->time;
 	speed = &data->speed;
-	speed->mov = time->frame * 30.0;
-	speed->rot = time->frame * 20.0;
+	speed->mov = 0.005 * 30.0;
+	speed->rot = 0.005 * 20.0;
 }
 
 void	clear_lines(t_data *data)
