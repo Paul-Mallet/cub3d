@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:21 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 15:49:58 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/26 16:35:40 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	init_data(t_data *data)
 	data->mlx.name = "cub3d_screen";
 	data->player.pos_x = 22.0;
 	data->player.pos_y = 12.0;
-	data->player.dir_x = -1.0; //West Side
+	data->player.dir_x = -1.0;
 	data->player.dir_y = 0.0;
 	data->cam.plane_x = 0.0;
 	data->cam.plane_y = 0.66;

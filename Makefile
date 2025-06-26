@@ -13,7 +13,10 @@ SRCS =  src/parsing/check_colors.c src/parsing/error.c src/parsing/check_letters
 		src/parsing/verif_textures.c src/parsing/check_walls.c src/parsing/check_map.c \
 		src/parsing/check_player.c src/parsing/check_spaces.c src/main.c src/utils.c \
 		src/parsing/check_colors_utils.c src/exec/init.c src/exec/render.c src/exec/hooks.c \
-		src/exec/utils.c src/exec/errors.c src/exec/print.c
+		src/exec/utils_general.c src/exec/utils_hook.c src/exec/utils_render_floor_casting.c \
+		src/exec/utils_render_pixel_line.c src/exec/utils_render_side_dist.c \
+		src/exec/utils_render_tex_buff.c src/exec/utils_render_tex_gen.c \
+		src/exec/errors.c src/exec/print.c
 
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 
@@ -52,3 +55,5 @@ fclean: clean
 	@echo "\033[31m✔ $(NAME), libft.a et libmlx.a suppressed\033[0m"
 
 re: fclean all
+
+.PHONY: all clean fclean re

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:29 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 15:50:05 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/26 16:34:06 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,6 @@ double	ft_abs(double dir)
 	if (dir < 0)
 		return (dir * -1);
 	return (dir);
-}
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->img.addr + (y * data->img.line_len + x * (data->img.bpp / 8));
-	*(unsigned int *)dst = color;
 }
 
 double	my_clamped_formula(double (*formula)(double), double input)
