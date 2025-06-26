@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/23 14:23:48 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/26 15:09:14 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	init_data(t_data *data, char **argv)
 	data->img_we = NULL;
 	data->img_no = NULL;
 	data->img_so = NULL;
+	data->player_x = 0;
+	data->player_y = 0;
 	data->map = NULL;
 	data->file = NULL;
 	data->orientation = NULL;

@@ -6,14 +6,16 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:26:16 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/23 14:23:59 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/26 15:08:49 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	get_orientation(t_data *data, char c)
+void	get_orientation(t_data *data, char c, int x, int y)
 {
+	data->player_x = x;
+	data->player_y = y;
 	if (c == 'N')
 		data->orientation = ft_strdup("North");
 	if (c == 'S')
@@ -78,7 +80,7 @@ int	check_player(t_data *data)
 			if (data->map[i][j] && check_player_char(data->map[i][j]))
 			{
 				data->player_count++;
-				get_orientation(data, data->map[i][j]);
+				get_orientation(data, data->map[i][j], i, j);
 			}
 			j++;
 		}

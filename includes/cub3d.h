@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/25 15:18:38 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/26 15:09:25 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_data
 	int		color_c;
 	int		color_f;
 	int		player_count;
+	int		player_x;
+	int		player_y;
 	char	*text_so;
 	char	*text_no;
 	char	*text_ea;
@@ -66,7 +68,7 @@ int		check_player(t_data *data);
 int		check_chars(char *str);
 int		check_spaces(t_data *data);
 int		check_walls(t_data *data);
-void	get_orientation(t_data *data, char c);
+void	get_orientation(t_data *data, char c, int x, int y);
 int		count_cols(t_data *data);
 int		get_textures_and_colors(t_data *data);
 int		verif_values(t_data *data);
