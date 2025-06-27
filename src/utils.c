@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 10:59:38 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 16:32:24 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/27 11:17:12 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	free_parsing(t_data *data)
 	free_textures_and_images(data);
 	if (data->parsing.map)
 		free_tab(data->parsing.map);
+	if (data->parsing.map_int)
+		free_tab(data->parsing.map_int);
 	if (data->parsing.file)
 		free_tab(data->parsing.file);
 	exit(0);

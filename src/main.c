@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 17:33:55 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/27 11:21:08 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	init_parsing(t_data *data, char **argv)
 	data->parsing.img_so = NULL;
 	data->parsing.player_x = 0;
 	data->parsing.player_y = 0;
+	data->parsing.map_int = NULL;
 	data->parsing.map = NULL;
 	data->parsing.file = NULL;
 	data->parsing.orientation = NULL;
@@ -62,16 +63,20 @@ int	main(int argc, char **argv)
 	init(&data);
 	if (check_errors(&data) == -1)
 		return (free_parsing(&data), 1);
+	data.parsing.map_col_number = count_cols(&data);
 	for (int i = 0; data.parsing.map[i]; i++)
 		printf("%s\n", data.parsing.map[i]);
-	// data.parsing.map_col_number = count_cols(&data);
-	// if (check_walls(&data) == -1)
-	// 	return (free_parsing(&data), 1);
-	// mlx_hook(data.mlx.mlx_win,
-	// 	DestroyNotify, StructureNotifyMask, &handle_close, &data);
-	// mlx_hook(data.mlx.mlx_win,
-	// 	KeyPress, KeyPressMask, &handle_keys, &data);
-	// render(&data);
-	// mlx_loop(data.mlx.mlx_co);
-	// return (0);
+	data.parsing.map_int = copy_map(&data);
+	for (int i = 0; data.parsing.map_int[i]; i++)
+		printf("%s\n", data.parsing.map_int[i]);
+	if (check_walls(&data) == -1)
+		return (free_parsing(&data), 1);
+	free_parsing(&data);
+	mlx_hook(data.mlx.mlx_win,
+		DestroyNotify, StructureNotifyMask, &handle_close, &data);
+	mlx_hook(data.mlx.mlx_win,
+		KeyPress, KeyPressMask, &handle_keys, &data);
+	render(&data);
+	mlx_loop(data.mlx.mlx_co);
+	return (0);
 }

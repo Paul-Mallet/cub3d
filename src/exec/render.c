@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:27 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 17:31:20 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/27 11:23:52 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	digit_diff_analyzer(t_data *data)
 			grid->wall.which_side = 1;
 		}
 		printf("x : %d y : %d\n", grid->map_x, grid->map_y);
-		if (data->parsing.map[grid->map_x][grid->map_y] > '0')
+		if (data->parsing.map_int[grid->map_x][grid->map_y] > '0')
 			grid->wall.is_hit = true;
 	}
 }
@@ -117,7 +117,7 @@ void	put_texel_color(t_data *data,
 	draw = &data->draw;
 	screen = &data->screen;
 	y = draw->draw_start;
-	tex->tex_index = data->parsing.map[grid->map_x][grid->map_y] - 1;
+	tex->tex_index = data->parsing.map_int[grid->map_x][grid->map_y] - 1;
 	tex->step = 1.0 * TEX_HEIGHT / draw->line_height;
 	tex->pos = (draw->draw_start - S_HEIGHT / 2 + draw->line_height / 2)
 		* tex->step;

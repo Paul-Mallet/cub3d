@@ -13,7 +13,7 @@ SRCS =  src/parsing/check_colors.c src/parsing/error.c src/parsing/check_letters
 		src/parsing/verif_textures.c src/parsing/check_walls.c src/parsing/check_map.c \
 		src/parsing/check_player.c src/parsing/check_spaces.c src/main.c src/utils.c \
 		src/parsing/check_colors_utils.c src/exec/init.c src/exec/render.c src/exec/hooks.c \
-		src/exec/utils_general.c src/exec/errors.c src/exec/print.c
+		src/exec/utils_general.c src/exec/errors.c src/exec/print.c src/parsing/copy_map.c
 
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 

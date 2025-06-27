@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 16:43:01 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/27 10:54:21 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,6 +274,7 @@ typedef struct s_parsing
 {
 	char	**file;
 	char	**map;
+	char	**map_int;
 	int		file_line_number;
 	int		map_line_number;
 	int		map_col_number;
@@ -368,3 +369,4 @@ int		check_duplicates(char identifier, t_data *data);
 int		print_error(t_data *data);
 int		check_player_char(char c);
 int		check_player_surrounded(t_data *data);
+char	**copy_map(t_data *data);
