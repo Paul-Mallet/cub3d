@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 15:56:26 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/27 09:32:24 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,6 +270,38 @@ typedef struct s_floor
 	int			cell_y;
 }	t_floor;
 
+typedef struct s_parsing
+{
+	char		**file;
+	char		**map;
+	int			file_line_number;
+	int			map_line_number;
+	int			map_col_number;
+	t_fill_data	fill;
+	int			color_c;
+	int			color_f;
+	int			player_count;
+	int			player_x;
+	int			player_y;
+	char		*text_so;
+	char		*text_no;
+	char		*text_ea;
+	char		*text_we;
+	void		*img_so;
+	void		*img_no;
+	void		*img_ea;
+	void		*img_we;
+	char		*orientation;
+}	t_parsing;
+
+typedef struct s_fill_data
+{
+	char	**map;
+	int		**map_int;
+	int		rows;
+	int		cols;
+}	t_fill_data;
+
 typedef struct s_data
 {
 	t_mlx		mlx;
@@ -288,62 +320,7 @@ typedef struct s_data
 	t_parsing	parsing;
 }	t_data;
 
-// INIT
-void		init(t_data *data);
-
-// RENDER
-void		render(t_data *data);
-
-// HOOKS
-int			handle_close(t_data *data);
-int			handle_keys(int key_sym, t_data *data);
-
-// UTILS
-void		*ft_memset(void *s, int c, size_t n);
-int			ft_intlen(int nb);
-double		get_ticks(void);
-double		ft_abs(double dir);
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-double		my_clamped_formula(double (*formula)(double), double input);
-
-// ERRORS
-void		handle_err(char *msg, int status);
-
-// PRINTF
-void		print_data(t_data *data);
-
-#endif
-
-typedef struct s_parsing
-{
-	char	**file;
-	char	**map;
-	int		file_line_number;
-	int		map_line_number;
-	int		map_col_number;
-	int		color_c;
-	int		color_f;
-	int		player_count;
-	int		player_x;
-	int		player_y;
-	char	*text_so;
-	char	*text_no;
-	char	*text_ea;
-	char	*text_we;
-	void	*img_so;
-	void	*img_no;
-	void	*img_ea;
-	void	*img_we;
-	char	*orientation;
-}	t_parsing;
-
-typedef struct s_fill_data
-{
-	char	**map;
-	int		rows;
-	int		cols;
-}	t_fill_data;
-
+// PARSING
 int		read_file(char *filename, t_data *data);
 int		check_format(char *argv);
 int		check_letter(t_data *data);
@@ -368,3 +345,30 @@ int		check_duplicates(char identifier, t_data *data);
 int		print_error(t_data *data);
 int		check_player_char(char c);
 int		check_player_surrounded(t_data *data);
+
+// INIT
+void		convert_map_to_int(t_data *data);
+void		init(t_data *data);
+
+// RENDER
+void		render(t_data *data);
+
+// HOOKS
+int			handle_close(t_data *data);
+int			handle_keys(int key_sym, t_data *data);
+
+// UTILS
+void		*ft_memset(void *s, int c, size_t n);
+int			ft_intlen(int nb);
+double		get_ticks(void);
+double		ft_abs(double dir);
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+double		my_clamped_formula(double (*formula)(double), double input);
+
+// ERRORS
+void	handle_err(char *msg, t_data *data);
+
+// PRINTF
+void		print_data(t_data *data);
+
+#endif

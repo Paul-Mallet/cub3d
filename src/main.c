@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 16:01:47 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/27 08:56:30 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 	read_file(argv[1], &data);
 	if (check_errors(&data) == -1)
 		return (close_game(&data), 1);
-	data.map_col_number = count_cols(&data);
+	data.parsing.map_col_number = count_cols(&data);
 	if (check_walls(&data) == -1)
 		return (close_game(&data));
 	close_game(&data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:19 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 16:09:33 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/27 09:31:20 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	handle_close(t_data *data)
 {
+	if (data->parsing.fill.map_int)
+		free_map(data);
 	mlx_destroy_image(data->mlx.mlx_co, data->img.img_ptr);
 	mlx_destroy_window(data->mlx.mlx_co, data->mlx.mlx_win);
 	mlx_destroy_display(data->mlx.mlx_co);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:21 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 16:35:40 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/27 09:13:51 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	init_data(t_data *data)
 {
+	convert_map_to_int(data);
 	data->mlx.name = "cub3d_screen";
 	data->player.pos_x = 22.0;
 	data->player.pos_y = 12.0;

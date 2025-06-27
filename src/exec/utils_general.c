@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_general.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:29 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 16:34:06 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/27 09:30:15 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,13 @@ void	*ft_memset(void *s, int c, size_t n)
 	return (str);
 }
 
-double	get_ticks(void)
+void	free_map(t_data *data)
 {
-	struct timeval	tv;
+	int	x;
 
-	if (gettimeofday(&tv, NULL) == -1)
-	{
-		perror("gettimeofday failed");
-		return (EXIT_FAILURE);
-	}
-	return (tv.tv_sec * 1e3 + tv.tv_usec / 1e3);
+	x = -1;
+    while (++x < data->parsing.map_line_number)
+		free(data->parsing.fill.map_int[x]);
 }
 
 double	ft_abs(double dir)
