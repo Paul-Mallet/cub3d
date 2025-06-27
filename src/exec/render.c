@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:27 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 16:23:20 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/27 09:46:46 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	digit_diff_analyzer(t_data *data)
 			grid->map_y += ray->step_y;
 			grid->wall.which_side = 1;
 		}
-		if (world_map[grid->map_x][grid->map_y] > 0)
+		if (data->parsing.map_int[grid->map_x][grid->map_y] > 0)
 			grid->wall.is_hit = true;
 	}
 }

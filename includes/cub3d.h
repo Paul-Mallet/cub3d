@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/27 09:32:24 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/27 09:49:40 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@
 # define BLUE		0x0000FF
 # define BLACK		0x000000
 # define WHITE		0xFFFFFF
-
-//global vars(not allowed)
-extern int	world_map[MAP_WIDTH][MAP_HEIGHT];
 
 //enums
 typedef enum e_err
@@ -274,6 +271,7 @@ typedef struct s_parsing
 {
 	char		**file;
 	char		**map;
+	int			**map_int;
 	int			file_line_number;
 	int			map_line_number;
 	int			map_col_number;
@@ -297,7 +295,6 @@ typedef struct s_parsing
 typedef struct s_fill_data
 {
 	char	**map;
-	int		**map_int;
 	int		rows;
 	int		cols;
 }	t_fill_data;

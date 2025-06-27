@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render_pixel_line.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:23:40 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/26 16:24:21 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/27 09:48:48 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	put_texel_color(t_data *data,
 	draw = &data->draw;
 	screen = &data->screen;
 	y = draw->draw_start;
-	tex->tex_index = world_map[grid->map_x][grid->map_y] - 1;
+	tex->tex_index = data->parsing.map_int[grid->map_x][grid->map_y] - 1;
 	tex->step = 1.0 * TEX_HEIGHT / draw->line_height;
 	tex->pos = (draw->draw_start - S_HEIGHT / 2 + draw->line_height / 2)
 		* tex->step;
