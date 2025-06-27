@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 10:03:58 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/27 11:13:31 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/27 11:30:37 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char *new_exec_line(char *line, t_data *data)
     {
         if (line[i] == ' ')
             str[i] = '2';
+		else if (check_player_char(line[i]) == 1)
+			str[i] = '0';
         else
             str[i] = line[i];
         i++;
@@ -37,7 +39,6 @@ char *new_exec_line(char *line, t_data *data)
     str[i] = '\0';
     return (str);
 }
-
 
 char **copy_map(t_data *data)
 {

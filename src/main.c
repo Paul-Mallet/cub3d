@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/27 11:21:08 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/27 11:35:48 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,12 @@ int	main(int argc, char **argv)
 		printf("%s\n", data.parsing.map_int[i]);
 	if (check_walls(&data) == -1)
 		return (free_parsing(&data), 1);
-	free_parsing(&data);
+	// free_parsing(&data);
 	mlx_hook(data.mlx.mlx_win,
 		DestroyNotify, StructureNotifyMask, &handle_close, &data);
 	mlx_hook(data.mlx.mlx_win,
 		KeyPress, KeyPressMask, &handle_keys, &data);
+	printf("%s\n", data);
 	render(&data);
 	mlx_loop(data.mlx.mlx_co);
 	return (0);
