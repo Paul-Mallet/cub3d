@@ -1,0 +1,27 @@
+NO ./textures/eagle.xpm
+SO ./textures/eagle.xpm
+WE ./textures/eagle.xpm
+EA ./textures/eagle.xpm
+                     
+F 120,124,250
+C 120,120,255
+
+11111111111
+10000000001
+10010001001
+10000000001
+10000000001
+10000N00001
+10000000001
+10010001001
+10000000001
+11111111111
+
+(probleme si on retire la derniere ligne de 1)
+ 
+ 
+ gwrwcwecwc
+ r
+ e
+ rv
+ r

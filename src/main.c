@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 09:52:43 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 19:15:15 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,33 @@ int	check_errors(t_data *data)
 	if (check_letter(data) == -1)
 		return (ft_printf("Error\ninvalid char detected\n"), -1);
 	return (0);
+}
+
+static void	init_mlx(t_data *data)
+{
+	data->mlx.name = "cub3d_screen";
+	data->mlx.mlx_co = mlx_init();
+	if (!data->mlx.mlx_co)
+		handle_err("Malloc error.", data);
+	data->mlx.mlx_win = mlx_new_window(data->mlx.mlx_co,
+			S_WIDTH, S_HEIGHT, data->mlx.name);
+	if (!data->mlx.mlx_win)
+	{
+		mlx_destroy_display(data->mlx.mlx_co);
+		free(data->mlx.mlx_co);
+		handle_err("Malloc error.", data);
+	}
+	data->img.img_ptr = mlx_new_image(data->mlx.mlx_co, S_WIDTH, S_HEIGHT);
+	if (!data->img.img_ptr)
+	{
+		mlx_destroy_window(data->mlx.mlx_co, data->mlx.mlx_win);
+		mlx_destroy_display(data->mlx.mlx_co);
+		free(data->mlx.mlx_win);
+		free(data->mlx.mlx_co);
+		handle_err("Malloc error.", data);
+	}
+	data->img.addr = mlx_get_data_addr(data->img.img_ptr,
+			&data->img.bpp, &data->img.line_len, &data->img.endian);
 }
 
 int	init_data(t_data *data, char **argv)
@@ -45,6 +72,7 @@ int	init_data(t_data *data, char **argv)
 		return (1);
 	data->parsing.color_c = -1;
 	data->parsing.color_f = -1;
+	init_mlx(data);
 	return (0);
 }
 
@@ -65,10 +93,11 @@ int	main(int argc, char **argv)
 	data.parsing.map_col_number = count_cols(&data);
 	if (check_walls(&data) == -1)
 		return (close_game(&data));
-	close_game(&data);
+	// close_game(&data);
 
 	// pamallet's part
 	init(&data);
+	convert_map_to_int(&data); //char** to int**, check if correctly freed
 	mlx_hook(data.mlx.mlx_win,
 		DestroyNotify, StructureNotifyMask, &handle_close, &data);
 	mlx_hook(data.mlx.mlx_win,

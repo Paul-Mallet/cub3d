@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:49:41 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 09:34:31 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 19:09:20 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ int	verif_text_ea(t_data *data)
 
 	if (!data->parsing.text_ea)
 		return (ft_printf("No EAST texture found\n"), -1);
+	printf("EAST texture: %s\n", data->parsing.text_ea);
 	data->parsing.img_ea = mlx_xpm_file_to_image(data->mlx.mlx_co, data->parsing.text_ea,
 			&width, &height);
 	if (!data->parsing.img_ea)
 	{
-		printf("path not found for EAST texture\n");
+		printf("path not found for EAST texture: %s\n", data->parsing.text_ea);
 		data->parsing.img_ea = NULL;
 		return (-1);
 	}

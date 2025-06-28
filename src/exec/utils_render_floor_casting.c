@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render_floor_casting.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:19:54 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/28 10:02:56 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 19:29:33 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ void	texturing_horiz_line(t_data *data,
 			(TEX_HEIGHT * (floor->y - floor->cell_y)) & (TEX_HEIGHT - 1);
 		floor->x += floor->step_x;
 		floor->y += floor->step_y;
+		// change by simple rgb colors, change using part 1 in this part 2
+		// floor
 		tex->color = textures[1][TEX_WIDTH * tex->floor_y + tex->floor_x];
 		tex->color = (tex->color >> 1) & 8355711;
 		tex_buff[y][x] = tex->color;
-		tex->color = textures[3][TEX_WIDTH * tex->floor_y + tex->floor_x];
+		// ceiling
+		tex->color = textures[2][TEX_WIDTH * tex->floor_y + tex->floor_x];
 		tex->color = (tex->color >> 1) & 8355711;
 		tex_buff[S_HEIGHT - y - 1][x] = tex->color;
 	}

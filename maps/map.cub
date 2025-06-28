@@ -1,11 +1,8 @@
-NO ./textures/player.xpm
-SO ./textures/exit.xpm
-tfyueuw pses
-WE ./textures/floor.xpm
-gerer espaces, regarder si map fermee, regarder si map jouable (1 player entoure par des murs)
-gerer char derriere la map
-EA ./textures/floor.xpm
-A ./textures/collectible.xpm                     
+NO ./textures/eagle.xpm
+SO ./textures/eagle.xpm
+WE ./textures/eagle.xpm
+EA ./textures/eagle.xpm
+                     
 F 120,124,250
 C 120,120,255
 

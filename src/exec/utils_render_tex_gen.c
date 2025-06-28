@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render_tex_gen.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:15:15 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/28 10:07:57 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 19:26:10 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,15 @@ void	load_image(t_data *data,
 void	generate_textures(t_data *data,
 	int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH])
 {
-	load_image(data, textures[0], "./assets/eagle.xpm");
-	load_image(data, textures[1], "./assets/bluestone.xpm");
-	load_image(data, textures[2], "./assets/barrel.xpm");
-	load_image(data, textures[3], "./assets/colorstone.xpm");
+	printf("ceiling: %d\n", data->parsing.color_c);
+	printf("floor: %d\n", data->parsing.color_f);
+	load_image(data, textures[0], data->parsing.text_ea);
+	// load_colors, like part 1(RGB int value)
+
+	// try to remove those unused textures
+	load_image(data, textures[1], "./assets/bluestone.xpm");	//floor
+	load_image(data, textures[2], "./assets/colorstone.xpm");	//ceiling
+	load_image(data, textures[3], "./assets/barrel.xpm");
 	load_image(data, textures[4], "./assets/eagle.xpm");
 	load_image(data, textures[5], "./assets/bluestone.xpm");
 	load_image(data, textures[6], "./assets/barrel.xpm");
