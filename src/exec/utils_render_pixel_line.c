@@ -6,11 +6,11 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:23:40 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/27 09:48:48 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 10:02:33 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	put_texel_color(t_data *data,
 	int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH],

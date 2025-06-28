@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:27 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/27 09:46:46 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 09:54:37 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ void	digit_diff_analyzer(t_data *data)
 
 void	speed_modifiers(t_data *data)
 {
-	t_time	*time;
 	t_speed	*speed;
 
-	time = &data->time;
 	speed = &data->speed;
 	speed->mov = 0.005 * 30.0;
 	speed->rot = 0.005 * 20.0;

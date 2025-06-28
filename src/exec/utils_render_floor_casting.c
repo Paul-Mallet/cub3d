@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render_floor_casting.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:19:54 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/26 16:20:23 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/28 10:02:56 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	texturing_horiz_line(t_data *data,
 	int textures[TEX_NUM][TEX_WIDTH *TEX_HEIGHT],

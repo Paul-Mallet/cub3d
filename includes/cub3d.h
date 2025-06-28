@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/27 09:49:40 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 10:06:53 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,13 @@ typedef struct s_floor
 	int			cell_y;
 }	t_floor;
 
+typedef struct s_fill_data
+{
+	char	**map;
+	int		rows;
+	int		cols;
+}	t_fill_data;
+
 typedef struct s_parsing
 {
 	char		**file;
@@ -292,13 +299,6 @@ typedef struct s_parsing
 	char		*orientation;
 }	t_parsing;
 
-typedef struct s_fill_data
-{
-	char	**map;
-	int		rows;
-	int		cols;
-}	t_fill_data;
-
 typedef struct s_data
 {
 	t_mlx		mlx;
@@ -318,30 +318,30 @@ typedef struct s_data
 }	t_data;
 
 // PARSING
-int		read_file(char *filename, t_data *data);
-int		check_format(char *argv);
-int		check_letter(t_data *data);
-int		count_lines(char *filename, t_data *data);
-void	error_map(t_data *data);
-int		check_char(char c);
-int		get_color(t_data *data, char *line);
-int		free_tab(char **tab);
-int		verif_textures(t_data *data);
-int		read_map(t_data *data, int i);
-int		close_game(t_data *data);
-int		check_player(t_data *data);
-int		check_chars(char *str);
-int		check_spaces(t_data *data);
-int		check_walls(t_data *data);
-void	get_orientation(t_data *data, char c, int x, int y);
-int		count_cols(t_data *data);
-int		get_textures_and_colors(t_data *data);
-int		verif_values(t_data *data);
-int		check_space(t_data *data, int i, int j);
-int		check_duplicates(char identifier, t_data *data);
-int		print_error(t_data *data);
-int		check_player_char(char c);
-int		check_player_surrounded(t_data *data);
+int			read_file(char *filename, t_data *data);
+int			check_format(char *argv);
+int			check_letter(t_data *data);
+int			count_lines(char *filename, t_data *data);
+void		error_map(t_data *data);
+int			check_char(char c);
+int			get_color(t_data *data, char *line);
+int			free_tab(char **tab);
+int			verif_textures(t_data *data);
+int			read_map(t_data *data, int i);
+int			close_game(t_data *data);
+int			check_player(t_data *data);
+int			check_chars(char *str);
+int			check_spaces(t_data *data);
+int			check_walls(t_data *data);
+void		get_orientation(t_data *data, char c, int x, int y);
+int			count_cols(t_data *data);
+int			get_textures_and_colors(t_data *data);
+int			verif_values(t_data *data);
+int			check_space(t_data *data, int i, int j);
+int			check_duplicates(char identifier, t_data *data);
+int			print_error(t_data *data);
+int			check_player_char(char c);
+int			check_player_surrounded(t_data *data);
 
 // INIT
 void		convert_map_to_int(t_data *data);
@@ -350,8 +350,38 @@ void		init(t_data *data);
 // RENDER
 void		render(t_data *data);
 
+// TEXTURES
+void		generate_textures(t_data *data,
+		int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH]);
+void		draw_tex_buff(t_data *data,
+		u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+void		clear_tex_buff(t_data *data,
+		u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+
+// FLOOR & CEILING
+void		floor_casting(t_data *data,
+		int textures[TEX_NUM][TEX_WIDTH *TEX_HEIGHT],
+		u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+
+// COMPUTE DISTANCES
+void		get_next_side_dist(t_data *data);
+void		get_init_side_dist(t_data *data);
+void		digit_diff_analyzer(t_data *data);
+
+// DRAWING PIXELS
+void		draw_my_pixel_line(t_data *data,
+		int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH],
+		u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+
 // HOOKS
 int			handle_close(t_data *data);
+void		setup_next_moves(t_data *data);
+void		handle_up(t_data *data);
+void		handle_down(t_data *data);
+void		handle_right(t_data *data);
+void		handle_left(t_data *data);
+void		handle_right_dir(t_data *data);
+void		handle_left_dir(t_data *data);
 int			handle_keys(int key_sym, t_data *data);
 
 // UTILS
@@ -363,7 +393,10 @@ void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 double		my_clamped_formula(double (*formula)(double), double input);
 
 // ERRORS
-void	handle_err(char *msg, t_data *data);
+void		handle_err(char *msg, t_data *data);
+
+// FREES
+void		free_map_int(t_data *data);
 
 // PRINTF
 void		print_data(t_data *data);

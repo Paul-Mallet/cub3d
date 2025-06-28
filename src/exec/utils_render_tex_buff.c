@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render_tex_buff.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:16:43 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/26 16:34:40 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/28 10:07:46 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	draw_tex_buff(t_data *data, u_int32_t tex_buff[S_HEIGHT][S_WIDTH])
 {
@@ -37,6 +37,11 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	clear_lines(t_data *data)
+{
+	ft_memset(data->img.addr, 0, S_HEIGHT * data->img.line_len);
+}
+
 void	clear_tex_buff(t_data *data, u_int32_t tex_buff[S_HEIGHT][S_WIDTH])
 {
 	int	x;
@@ -52,9 +57,4 @@ void	clear_tex_buff(t_data *data, u_int32_t tex_buff[S_HEIGHT][S_WIDTH])
 			tex_buff[y][x] = 0;
 		}
 	}
-}
-
-void	clear_lines(t_data *data)
-{
-	ft_memset(data->img.addr, 0, S_HEIGHT * data->img.line_len);
 }

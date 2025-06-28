@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:07:37 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 15:59:54 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/28 09:35:12 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,22 @@ int	init_fill(t_data *data, t_fill_data	*fill)
 	char		**map_copy;
 	int			i;
 
-	map_copy = malloc(sizeof(char *) * (data->map_line_number + 2));
+	map_copy = malloc(sizeof(char *) * (data->parsing.map_line_number + 2));
 	if (!map_copy)
 	{
 		fill->map = NULL;
 		return (1);
 	}
 	i = 0;
-	while (data->map[i])
+	while (data->parsing.map[i])
 	{
-		map_copy[i] = ft_strdup(data->map[i]);
+		map_copy[i] = ft_strdup(data->parsing.map[i]);
 		i++;
 	}
 	map_copy[i] = NULL;
 	fill->map = map_copy;
-	fill->rows = data->map_line_number;
-	fill->cols = data->map_col_number;
+	fill->rows = data->parsing.map_line_number;
+	fill->cols = data->parsing.map_col_number;
 	return (0);
 }
 
@@ -81,7 +81,7 @@ int	check_walls(t_data *data)
 	int			j;
 	t_fill_data	fill;
 
-	if (!check_line(data->map[data->map_line_number -1])
+	if (!check_line(data->parsing.map[data->parsing.map_line_number -1])
 		|| check_spaces(data) == -1 || init_fill(data, &fill) == 1)
 		return (-1);
 	i = 0;

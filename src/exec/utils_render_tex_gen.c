@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render_tex_gen.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:15:15 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/26 16:15:52 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/28 10:07:57 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	copy_texture_data(t_tex *tex,
 	int texture_slot[TEX_HEIGHT*TEX_WIDTH])

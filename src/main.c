@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/27 08:56:30 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 09:52:43 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,25 @@ int	check_errors(t_data *data)
 
 int	init_data(t_data *data, char **argv)
 {
-	data->text_ea = NULL;
-	data->text_we = NULL;
-	data->text_no = NULL;
-	data->text_so = NULL;
-	data->img_ea = NULL;
-	data->img_we = NULL;
-	data->img_no = NULL;
-	data->img_so = NULL;
-	data->player_x = 0;
-	data->player_y = 0;
-	data->map = NULL;
-	data->file = NULL;
-	data->orientation = NULL;
-	data->player_count = 0;
-	data->file_line_number = count_lines(argv[1], data);
-	if (data->file_line_number == -1)
+	data->parsing.text_ea = NULL;
+	data->parsing.text_we = NULL;
+	data->parsing.text_no = NULL;
+	data->parsing.text_so = NULL;
+	data->parsing.img_ea = NULL;
+	data->parsing.img_we = NULL;
+	data->parsing.img_no = NULL;
+	data->parsing.img_so = NULL;
+	data->parsing.player_x = 0;
+	data->parsing.player_y = 0;
+	data->parsing.map = NULL;
+	data->parsing.file = NULL;
+	data->parsing.orientation = NULL;
+	data->parsing.player_count = 0;
+	data->parsing.file_line_number = count_lines(argv[1], data);
+	if (data->parsing.file_line_number == -1)
 		return (1);
-	data->color_c = -1;
-	data->color_f = -1;
-	data->mlx = mlx_init();
+	data->parsing.color_c = -1;
+	data->parsing.color_f = -1;
 	return (0);
 }
 
@@ -53,6 +52,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	// bfiquet's part
 	if (argc != 2)
 		return (printf("Error : invalid arguments\n"));
 	if (init_data(&data, argv) == 1)
@@ -66,6 +66,8 @@ int	main(int argc, char **argv)
 	if (check_walls(&data) == -1)
 		return (close_game(&data));
 	close_game(&data);
+
+	// pamallet's part
 	init(&data);
 	mlx_hook(data.mlx.mlx_win,
 		DestroyNotify, StructureNotifyMask, &handle_close, &data);

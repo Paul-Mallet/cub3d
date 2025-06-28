@@ -6,11 +6,11 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:09:50 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/27 09:46:12 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 10:02:18 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	handle_up(t_data *data)
 {

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render_side_dist.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:12:13 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/26 16:12:49 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/28 10:07:07 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
-void	init_side_dist_x(t_ray *ray, t_player *player, t_grid *grid)
+static void	init_side_dist_x(t_ray *ray, t_player *player, t_grid *grid)
 {
 	if (ray->dir_x < 0)
 	{
@@ -28,7 +28,7 @@ void	init_side_dist_x(t_ray *ray, t_player *player, t_grid *grid)
 	}
 }
 
-void	init_side_dist_y(t_ray *ray, t_player *player, t_grid *grid)
+static void	init_side_dist_y(t_ray *ray, t_player *player, t_grid *grid)
 {
 	if (ray->dir_y < 0)
 	{

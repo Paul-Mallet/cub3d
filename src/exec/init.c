@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:21 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/27 09:13:51 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 09:54:14 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ static void	init_mlx(t_data *data)
 {
 	data->mlx.mlx_co = mlx_init();
 	if (!data->mlx.mlx_co)
-		handle_err("Malloc error.", INIT);
+		handle_err("Malloc error.", data);
 	data->mlx.mlx_win = mlx_new_window(data->mlx.mlx_co,
 			S_WIDTH, S_HEIGHT, data->mlx.name);
 	if (!data->mlx.mlx_win)
 	{
 		mlx_destroy_display(data->mlx.mlx_co);
 		free(data->mlx.mlx_co);
-		handle_err("Malloc error.", WINDOW);
+		handle_err("Malloc error.", data);
 	}
 	data->img.img_ptr = mlx_new_image(data->mlx.mlx_co, S_WIDTH, S_HEIGHT);
 	if (!data->img.img_ptr)
@@ -49,7 +49,7 @@ static void	init_mlx(t_data *data)
 		mlx_destroy_display(data->mlx.mlx_co);
 		free(data->mlx.mlx_win);
 		free(data->mlx.mlx_co);
-		handle_err("Malloc error.", IMAGE);
+		handle_err("Malloc error.", data);
 	}
 	data->img.addr = mlx_get_data_addr(data->img.img_ptr,
 			&data->img.bpp, &data->img.line_len, &data->img.endian);

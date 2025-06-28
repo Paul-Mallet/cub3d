@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:26:16 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 15:59:43 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/28 09:38:12 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	get_orientation(t_data *data, char c, int x, int y)
 {
-	data->player_x = x;
-	data->player_y = y;
+	data->parsing.player_x = x;
+	data->parsing.player_y = y;
 	if (c == 'N')
-		data->orientation = ft_strdup("North");
+		data->parsing.orientation = ft_strdup("North");
 	if (c == 'S')
-		data->orientation = ft_strdup("South");
+		data->parsing.orientation = ft_strdup("South");
 	if (c == 'E')
-		data->orientation = ft_strdup("East");
+		data->parsing.orientation = ft_strdup("East");
 	if (c == 'W')
-		data->orientation = ft_strdup("West");
+		data->parsing.orientation = ft_strdup("West");
 }
 
 int	check_player_char(char c)
@@ -39,19 +39,19 @@ int	check_player_surrounded(t_data *data)
 	int	j;
 
 	i = 0;
-	while (data->map[i])
+	while (data->parsing.map[i])
 	{
 		j = 0;
-		while (data->map[i][j])
+		while (data->parsing.map[i][j])
 		{
-			if (check_player_char(data->map[i][j]))
+			if (check_player_char(data->parsing.map[i][j]))
 			{
-				if (i == 0 || j == 0 || !data->map[i + 1]
-					|| !data->map[i][j + 1])
+				if (i == 0 || j == 0 || !data->parsing.map[i + 1]
+					|| !data->parsing.map[i][j + 1])
 					return (printf("Error\nPlayer at the"
 							" edge of the map\n"), -1);
-				if (data->map[i - 1][j] == ' ' || data->map[i + 1][j] == ' ' ||
-					data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')
+				if (data->parsing.map[i - 1][j] == ' ' || data->parsing.map[i + 1][j] == ' ' ||
+					data->parsing.map[i][j - 1] == ' ' || data->parsing.map[i][j + 1] == ' ')
 					return (printf("Error\nPlayer is not "
 							"properly surrounded\n"), -1);
 			}
@@ -69,24 +69,24 @@ int	check_player(t_data *data)
 
 	i = 0;
 	j = 0;
-	while (data->map[i])
+	while (data->parsing.map[i])
 	{
 		j = 0;
-		while (data->map[i][j])
+		while (data->parsing.map[i][j])
 		{
-			if (data->map[i][j] && check_player_char(data->map[i][j])
-				&& data->player_count == 1)
+			if (data->parsing.map[i][j] && check_player_char(data->parsing.map[i][j])
+				&& data->parsing.player_count == 1)
 				return (printf("Error\nToo many players\n"), -1);
-			if (data->map[i][j] && check_player_char(data->map[i][j]))
+			if (data->parsing.map[i][j] && check_player_char(data->parsing.map[i][j]))
 			{
-				data->player_count++;
-				get_orientation(data, data->map[i][j], i, j);
+				data->parsing.player_count++;
+				get_orientation(data, data->parsing.map[i][j], i, j);
 			}
 			j++;
 		}
 		i++;
 	}
-	if (data->player_count != 1)
+	if (data->parsing.player_count != 1)
 		return (printf("No player found\n"));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:29 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/27 09:47:38 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 09:47:26 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ void	*ft_memset(void *s, int c, size_t n)
 	return (str);
 }
 
-void	free_map(t_data *data)
+void	free_map_int(t_data *data)
 {
 	int	x;
 
 	x = -1;
-    while (++x < data->parsing.map_line_number)
+	while (++x < data->parsing.map_line_number)
 		free(data->parsing.map_int[x]);
 }
 

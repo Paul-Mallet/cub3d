@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 10:59:38 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/26 16:00:05 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/06/28 09:50:43 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,46 @@
 
 void	free_textures_and_images(t_data *data)
 {
-	if (data->text_we)
-		free(data->text_we);
-	if (data->text_ea)
-		free(data->text_ea);
-	if (data->text_no)
-		free(data->text_no);
-	if (data->text_so)
-		free(data->text_so);
-	if (data->img_ea)
-		mlx_destroy_image(data->mlx, data->img_ea);
-	if (data->img_so)
-		mlx_destroy_image(data->mlx, data->img_so);
-	if (data->img_no)
-		mlx_destroy_image(data->mlx, data->img_no);
-	if (data->img_we)
-		mlx_destroy_image(data->mlx, data->img_we);
-	data->text_we = NULL;
-	data->text_ea = NULL;
-	data->text_no = NULL;
-	data->text_so = NULL;
+	if (data->parsing.text_we)
+		free(data->parsing.text_we);
+	if (data->parsing.text_ea)
+		free(data->parsing.text_ea);
+	if (data->parsing.text_no)
+		free(data->parsing.text_no);
+	if (data->parsing.text_so)
+		free(data->parsing.text_so);
+	if (data->parsing.img_ea)
+		mlx_destroy_image(data->mlx.mlx_co, data->parsing.img_ea);
+	if (data->parsing.img_so)
+		mlx_destroy_image(data->mlx.mlx_co, data->parsing.img_so);
+	if (data->parsing.img_no)
+		mlx_destroy_image(data->mlx.mlx_co, data->parsing.img_no);
+	if (data->parsing.img_we)
+		mlx_destroy_image(data->mlx.mlx_co, data->parsing.img_we);
+	data->parsing.text_we = NULL;
+	data->parsing.text_ea = NULL;
+	data->parsing.text_no = NULL;
+	data->parsing.text_so = NULL;
 }
 
+//	if (data->parsing.map_int)
+// 		free_map_int(data);
+// 	mlx_destroy_image(data->mlx.mlx_co, data->img.img_ptr);
+// 	mlx_destroy_window(data->mlx.mlx_co, data->mlx.mlx_win);
+// 	mlx_destroy_display(data->mlx.mlx_co);
+// 	free(data->mlx.mlx_co);
+// 	exit(EXIT_SUCCESS);
 int	close_game(t_data *data)
 {
-	int	i;
-
-	i = 0;
-	if (data->orientation)
-		free(data->orientation);
+	if (data->parsing.orientation)
+		free(data->parsing.orientation);
 	free_textures_and_images(data);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	if (data->map)
-		free_tab(data->map);
-	if (data->file)
-		free_tab(data->file);
+	mlx_destroy_display(data->mlx.mlx_co);
+	free(data->mlx.mlx_co);
+	if (data->parsing.map)
+		free_tab(data->parsing.map);
+	if (data->parsing.file)
+		free_tab(data->parsing.file);
 	exit(0);
 	return (0);
 }
