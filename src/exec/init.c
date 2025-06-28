@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:21 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 09:54:14 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 18:43:59 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static void	init_data(t_data *data)
 	data->grid.map_x = (int)data->player.pos_x;
 	data->grid.map_y = (int)data->player.pos_y;
 	data->grid.wall.is_hit = 0;
-	data->time.curr = get_ticks();
-	data->time.old = data->time.curr;
 }
 
 static void	init_mlx(t_data *data)

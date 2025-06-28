@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 08:58:13 by paul_mallet       #+#    #+#             */
-/*   Updated: 2025/06/27 09:48:01 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 18:43:21 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	malloc_cols(t_data *data, int rows, int cols)
 	{
 		data->parsing.map_int[x] = (int *)malloc(cols * sizeof(int));
 		if (!data->parsing.map_int[x])
-			handle_error(data);
+			handle_err("malloc failed.\n", data);
     }
 }
 
@@ -40,7 +40,7 @@ void	convert_map_to_int(t_data *data)
 	cols = data->parsing.map_col_number;
 	data->parsing.map_int = (int **)malloc(rows * sizeof(int *));
 	if (!data->parsing.map_int)
-		handle_error(data); // exit() allowed
+		handle_err("malloc failed.\n", data); // exit() allowed
 	malloc_cols(data, rows, cols);
 
 	//check if correct [x][y] or [y][x]

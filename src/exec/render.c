@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:27 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 09:54:37 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/28 18:44:09 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	render(t_data *data)
 	screen->x = 0;
 	screen->y = 0;
 	clear_tex_buff(data, tex_buff);
-	data->time.curr = get_ticks();
 	generate_textures(data, textures);
 	floor_casting(data, textures, tex_buff);
 	while (screen->x < S_WIDTH)
