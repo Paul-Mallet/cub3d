@@ -6,13 +6,13 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 19:02:01 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/29 19:12:23 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	check_errors(t_data *data)
+static int	check_errors(t_data *data)
 {
 	if (get_textures_and_colors(data) == -1
 		|| verif_textures(data) == -1
@@ -51,7 +51,7 @@ static void	init_mlx(t_data *data)
 			&data->img.bpp, &data->img.line_len, &data->img.endian);
 }
 
-int	init_data(t_data *data, char **argv)
+static int	init_data(t_data *data, char **argv)
 {
 	data->parsing.text_ea = NULL;
 	data->parsing.text_we = NULL;
@@ -86,7 +86,7 @@ int	main(int argc, char **argv)
 	if (init_data(&data, argv) == 1)
 		return (1);
 	if (!check_format(argv[1]))
-		return (ft_printf("Error\nInvalid file\n"), close_game(&data), 1);
+		return (printf("Error\nInvalid file\n"), close_game(&data), 1);
 	read_file(argv[1], &data);
 	if (check_errors(&data) == -1)
 		return (close_game(&data), 1);

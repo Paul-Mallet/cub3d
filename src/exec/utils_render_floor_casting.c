@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:19:54 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/29 17:53:10 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/29 19:20:16 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	floor_casting(t_data *data,
 			* (ray->dir_y_right - ray->dir_y_left) / S_WIDTH;
 		floor->x = data->player.pos_x + floor->row_dist * ray->dir_x_left;
 		floor->y = data->player.pos_y + floor->row_dist * ray->dir_y_left;
-		// texturing_horiz_line(data, textures, tex_buff, y);
 		drawing_horiz_line(data, y);
 	}
 }
