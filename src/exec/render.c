@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:27 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 10:50:56 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/29 11:32:46 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ void	digit_diff_analyzer(t_data *data)
 			grid->map_y += ray->step_y;
 			grid->wall.which_side = 1;
 		}
-		// change grid values, based on parsing map !
-		// printf("data->parsing.map_int[grid->map_x][grid->map_y]: %d\n",
-			// data->parsing.map_int[grid->map_x][grid->map_y]);
 		if (data->parsing.map_int[grid->map_x][grid->map_y] > 0)
 			grid->wall.is_hit = true;
 	}

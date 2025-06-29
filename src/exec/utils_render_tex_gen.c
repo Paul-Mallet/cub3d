@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:15:15 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/29 11:04:09 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/29 11:35:28 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	load_image(t_data *data,
 	mlx_destroy_image(data->mlx.mlx_co, tex->tex_img);
 }
 
-// rm unused textures slots + resize TEX_NUM tests
 void	generate_textures(t_data *data,
 	int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH])
 {
@@ -68,12 +67,4 @@ void	generate_textures(t_data *data,
 		load_image(data, textures[0], data->parsing.text_we);
 	else if (data->parsing.text_ea)
 		load_image(data, textures[0], data->parsing.text_ea);
-	// try to remove those unused textures
-	// load_image(data, textures[1], "./assets/bluestone.xpm");	//floor
-	// load_image(data, textures[2], "./assets/colorstone.xpm");	//ceiling
-	// load_image(data, textures[3], "./assets/barrel.xpm");
-	// load_image(data, textures[4], "./assets/eagle.xpm");
-	// load_image(data, textures[5], "./assets/bluestone.xpm");
-	// load_image(data, textures[6], "./assets/barrel.xpm");
-	// load_image(data, textures[7], "./assets/colorstone.xpm");
 }

@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 10:06:53 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/29 11:36:33 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@
 # define S_HEIGHT	480
 
 // wall, ceil, floor textures and resolutions
-# define TEX_NUM	8 //change with 3
+// only handle 64x64? so return error if not at proper size in parsing
+# define TEX_NUM	8
 # define TEX_WIDTH	64
 # define TEX_HEIGHT	64
 
