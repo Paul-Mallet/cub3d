@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render_floor_casting.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:19:54 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/29 10:16:58 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/29 17:53:10 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	floor_casting(t_data *data,
 	(void)tex_buff;
 	ray = &data->ray;
 	floor = &data->floor;
-	y = S_HEIGHT / 2;
+	y = S_HEIGHT / 2 - 1;
 	while (++y < S_HEIGHT)
 	{
 		ray->dir_x_left = data->player.dir_x - data->cam.plane_x;

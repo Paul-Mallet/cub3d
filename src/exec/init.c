@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:21 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 11:25:55 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/29 18:00:57 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static void	init_data(t_data *data)
 	data->player.pos_x = (double)data->parsing.player_x;
 	data->player.pos_y = (double)data->parsing.player_y;
 	which_player_dir(data);
-	data->grid.map_x = (int)data->player.pos_x;
-	data->grid.map_y = (int)data->player.pos_y;
+	data->grid.map_x = (int)data->parsing.player_x;
+	data->grid.map_y = (int)data->parsing.player_y;
 	data->grid.wall.is_hit = 0;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:20:57 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 09:31:28 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/29 18:21:01 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ int	count_cols(t_data *data)
 	{
 		j = 0;
 		while (data->parsing.map[i][j])
-		{
-			if (j > max)
-				max = j;
 			j++;
-		}
+		if (j > max)
+			max = j;
 		i++;
 	}
 	return (max);

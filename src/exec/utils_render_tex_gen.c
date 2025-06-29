@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render_tex_gen.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:15:15 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/29 11:35:28 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/29 17:51:13 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ void	load_image(t_data *data,
 void	generate_textures(t_data *data,
 	int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH])
 {
-	if (data->parsing.text_no)
+	if (ft_strcmp(data->parsing.orientation, "North") == 0)
 		load_image(data, textures[0], data->parsing.text_no);
-	else if (data->parsing.text_so)
+	else if (ft_strcmp(data->parsing.orientation, "South") == 0)
 		load_image(data, textures[0], data->parsing.text_so);
-	else if (data->parsing.text_we)
+	else if (ft_strcmp(data->parsing.orientation, "West") == 0)
 		load_image(data, textures[0], data->parsing.text_we);
-	else if (data->parsing.text_ea)
+	else if (ft_strcmp(data->parsing.orientation, "East") == 0)
 		load_image(data, textures[0], data->parsing.text_ea);
 }

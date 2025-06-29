@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 08:58:13 by paul_mallet       #+#    #+#             */
-/*   Updated: 2025/06/28 18:43:21 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/29 18:12:06 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,40 @@ void	malloc_cols(t_data *data, int rows, int cols)
 		if (!data->parsing.map_int[x])
 			handle_err("malloc failed.\n", data);
     }
+}
+
+void	print_map_int(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = -1;
+	printf("data->parsing.map_line_number: %d\n"
+		"data->parsing.map_col_number: %d\n",
+		data->parsing.map_line_number,
+		data->parsing.map_col_number);
+	while (++x < data->parsing.map_line_number)
+	{
+		y = -1;
+		while (++y < data->parsing.map_col_number)
+			printf("%d", data->parsing.map_int[x][y]);
+		printf("\n");
+	}
+}
+
+void	print_map_char(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = -1;
+	while (++x < data->parsing.map_line_number)
+	{
+		y = -1;
+		while (++y < data->parsing.map_col_number)
+			printf("%c", data->parsing.map[x][y]);
+		printf("\n");
+	}
 }
 
 void	convert_map_to_int(t_data *data)

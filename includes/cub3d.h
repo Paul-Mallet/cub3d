@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 11:36:33 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/29 18:11:29 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -401,5 +401,7 @@ void		free_map_int(t_data *data);
 
 // PRINTF
 void		print_data(t_data *data);
+void		print_map_int(t_data *data);
+void		print_map_char(t_data *data);
 
 #endif
