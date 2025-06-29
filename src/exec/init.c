@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:21 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 18:00:57 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/29 18:26:00 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	which_player_dir(t_data *data)
 {
-	printf("data->parsing.orientation: %s\n", data->parsing.orientation);
+	printf("data->parsing.orientation: %s|\n", data->parsing.orientation);
 	if (ft_strcmp(data->parsing.orientation, "North") == 0)
 	{
 		data->player.dir_x = 0.0;
@@ -38,6 +38,7 @@ static void	which_player_dir(t_data *data)
 	}
 	else if (ft_strcmp(data->parsing.orientation, "West") == 0)
 	{
+		printf("in west\n");
 		data->player.dir_x = -1.0;
 		data->player.dir_y = 0.0;
 		data->cam.plane_x = 0.0;

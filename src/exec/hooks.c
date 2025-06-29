@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:19 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 09:48:31 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/29 19:05:04 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 int	handle_close(t_data *data)
 {
+	free(data->parsing.orientation);
+	free_textures_and_images(data);
+	if (data->parsing.file)
+		free_tab(data->parsing.file);
+	if (data->parsing.map)
+		free_tab(data->parsing.map);
 	if (data->parsing.map_int)
 		free_map_int(data);
 	mlx_destroy_image(data->mlx.mlx_co, data->img.img_ptr);

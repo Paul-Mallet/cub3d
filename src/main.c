@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 19:15:15 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/29 19:02:01 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,9 @@ int	main(int argc, char **argv)
 	data.parsing.map_col_number = count_cols(&data);
 	if (check_walls(&data) == -1)
 		return (close_game(&data));
-	// close_game(&data);
 
 	// pamallet's part
 	init(&data);
-	convert_map_to_int(&data); //char** to int**, check if correctly freed
 	mlx_hook(data.mlx.mlx_win,
 		DestroyNotify, StructureNotifyMask, &handle_close, &data);
 	mlx_hook(data.mlx.mlx_win,

@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 18:11:29 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/29 19:04:18 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ typedef struct s_screen
 	//(0;0) = top-left corner
 	int		x;				//x = width axe
 	int		y;				//y = height axe
-	char	*fps_str;			//string to put on screen
 }	t_screen;
 
 /*
@@ -174,16 +173,8 @@ typedef struct s_ray
 	float	dir_y_right;	//y ...
 }	t_ray;
 
-typedef struct s_time
-{
-	//diff between 2 = how much should move player on keypress, FPS counter
-	double		curr;		//curr frame, using gettimeofday(ms, us?)
-	double		old;		//prev frame
-	double		frame;		//time frame has taken to pop
-}	t_time;
-
 /*
-
+	draw walls textures as vertical line from top to bottom
 */
 typedef struct s_draw
 {
@@ -194,7 +185,7 @@ typedef struct s_draw
 }	t_draw;
 
 /*
-
+	speed modifiers of movements and rotations of the player
 */
 typedef struct s_speed
 {
@@ -203,7 +194,7 @@ typedef struct s_speed
 }	t_speed;
 
 /*
-
+	current and next compute calculation
 */
 typedef struct s_keys
 {
@@ -310,7 +301,6 @@ typedef struct s_data
 	t_cam		cam;
 	t_ray		ray;
 	t_draw		draw;
-	t_time		time;
 	t_speed		speed;
 	t_keys		keys;
 	t_tex		tex;
@@ -337,6 +327,7 @@ int			check_walls(t_data *data);
 void		get_orientation(t_data *data, char c, int x, int y);
 int			count_cols(t_data *data);
 int			get_textures_and_colors(t_data *data);
+void		free_textures_and_images(t_data *data);
 int			verif_values(t_data *data);
 int			check_space(t_data *data, int i, int j);
 int			check_duplicates(char identifier, t_data *data);

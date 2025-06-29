@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_general.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:29 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 09:47:26 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/29 18:53:20 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ void	*ft_memset(void *s, int c, size_t n)
 
 void	free_map_int(t_data *data)
 {
-	int	x;
+	int	y;
 
-	x = -1;
-	while (++x < data->parsing.map_line_number)
-		free(data->parsing.map_int[x]);
+	y = -1;
+	while (++y < data->parsing.map_line_number)
+		free(data->parsing.map_int[y]);
+	free(data->parsing.map_int);
 }
 
 double	ft_abs(double dir)
