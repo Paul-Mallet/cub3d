@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render_tex_gen.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:15:15 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/28 19:26:10 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/29 11:04:09 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,20 @@ void	load_image(t_data *data,
 void	generate_textures(t_data *data,
 	int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH])
 {
-	printf("ceiling: %d\n", data->parsing.color_c);
-	printf("floor: %d\n", data->parsing.color_f);
-	load_image(data, textures[0], data->parsing.text_ea);
-	// load_colors, like part 1(RGB int value)
-
+	if (data->parsing.text_no)
+		load_image(data, textures[0], data->parsing.text_no);
+	else if (data->parsing.text_so)
+		load_image(data, textures[0], data->parsing.text_so);
+	else if (data->parsing.text_we)
+		load_image(data, textures[0], data->parsing.text_we);
+	else if (data->parsing.text_ea)
+		load_image(data, textures[0], data->parsing.text_ea);
 	// try to remove those unused textures
-	load_image(data, textures[1], "./assets/bluestone.xpm");	//floor
-	load_image(data, textures[2], "./assets/colorstone.xpm");	//ceiling
-	load_image(data, textures[3], "./assets/barrel.xpm");
-	load_image(data, textures[4], "./assets/eagle.xpm");
-	load_image(data, textures[5], "./assets/bluestone.xpm");
-	load_image(data, textures[6], "./assets/barrel.xpm");
-	load_image(data, textures[7], "./assets/colorstone.xpm");
+	// load_image(data, textures[1], "./assets/bluestone.xpm");	//floor
+	// load_image(data, textures[2], "./assets/colorstone.xpm");	//ceiling
+	// load_image(data, textures[3], "./assets/barrel.xpm");
+	// load_image(data, textures[4], "./assets/eagle.xpm");
+	// load_image(data, textures[5], "./assets/bluestone.xpm");
+	// load_image(data, textures[6], "./assets/barrel.xpm");
+	// load_image(data, textures[7], "./assets/colorstone.xpm");
 }

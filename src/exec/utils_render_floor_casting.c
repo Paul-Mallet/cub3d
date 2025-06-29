@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render_floor_casting.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:19:54 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/28 19:29:33 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/29 10:16:58 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,22 @@ void	texturing_horiz_line(t_data *data,
 	}
 }
 
+void	drawing_horiz_line(t_data *data, int y)
+{
+	int	x;
+	int	color_floor;
+	int	color_ceil;
+
+	x = -1;
+	color_floor = data->parsing.color_f;
+	color_ceil = data->parsing.color_c;
+	while (++x < S_WIDTH)
+	{
+		my_mlx_pixel_put(data, x, y, color_floor);
+		my_mlx_pixel_put(data, x, S_HEIGHT - y - 1, color_ceil);
+	}
+}
+
 void	floor_casting(t_data *data,
 	int textures[TEX_NUM][TEX_WIDTH *TEX_HEIGHT],
 	u_int32_t tex_buff[S_HEIGHT][S_WIDTH])
@@ -54,6 +70,8 @@ void	floor_casting(t_data *data,
 	t_ray		*ray;
 	t_floor		*floor;
 
+	(void)textures;
+	(void)tex_buff;
 	ray = &data->ray;
 	floor = &data->floor;
 	y = S_HEIGHT / 2;
@@ -72,6 +90,7 @@ void	floor_casting(t_data *data,
 			* (ray->dir_y_right - ray->dir_y_left) / S_WIDTH;
 		floor->x = data->player.pos_x + floor->row_dist * ray->dir_x_left;
 		floor->y = data->player.pos_y + floor->row_dist * ray->dir_y_left;
-		texturing_horiz_line(data, textures, tex_buff, y);
+		// texturing_horiz_line(data, textures, tex_buff, y);
+		drawing_horiz_line(data, y);
 	}
 }
