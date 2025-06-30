@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:26:16 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 16:51:26 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/30 19:01:34 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	check_player_surrounded(t_data *data)
 			{
 				if (i == 0 || j == 0 || !data->parsing.map[i + 1]
 					|| !data->parsing.map[i][j + 1])
-					return (printf("Error\nPlayer at the"
-							" edge of the map\n"), -1);
+					return (printf("Error\nPlayer at the "
+							"edge of the map\n"), -1);
 				if (data->parsing.map[i - 1][j] == ' '
 					|| data->parsing.map[i + 1][j] == ' '
 					|| data->parsing.map[i][j - 1] == ' '
@@ -89,6 +89,9 @@ int	check_player(t_data *data)
 		i++;
 	}
 	if (data->parsing.player_count != 1)
-		return (printf("Error\nNo player found\n"));
+	{
+		printf("Error\nNo player found\n");
+		return (-1);
+	}
 	return (0);
 }

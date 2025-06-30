@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 16:57:05 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:50:48 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	check_errors(t_data *data)
 	if (get_textures_and_colors(data) == -1
 		|| verif_textures(data) == -1
 		|| check_player(data) == -1
-		||check_player_surrounded(data) == -1)
+		|| check_player_surrounded(data) == -1)
 		return (-1);
 	if (check_letter(data) == -1)
 		return (ft_printf("Error\nInvalid char detected\n"), -1);
@@ -86,13 +86,15 @@ int	main(int argc, char **argv)
 	if (init_data(&data, argv) == 1)
 		return (1);
 	if (!check_format(argv[1]))
-		return (printf("Error\nInvalid file\n"), close_game(&data), 1);
+		return (close_game(&data), 1);
 	read_file(argv[1], &data);
 	if (check_errors(&data) == -1)
 		return (close_game(&data), 1);
 	data.parsing.map_col_number = count_cols(&data);
 	if (check_walls(&data) == -1)
 		return (close_game(&data));
+	// if (check_after_map(&data) == -1)
+	// 	return (close_game(&data));
 
 	// pamallet's part
 	init(&data);

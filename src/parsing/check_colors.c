@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 16:48:06 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/30 19:07:56 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,10 @@ int	get_texture(t_data *data, char *line)
 		return (set_texture(split_line, trimmed, &data->parsing.text_no, "NO"));
 	if (ft_strcmp(split_line[0], "SO") == 0)
 		return (set_texture(split_line, trimmed, &data->parsing.text_so, "SO"));
-	ft_printf("Error\nUnknown texture identifier: %s\n", split_line[0]);
+	printf("Error\nUnknown texture identifier: %s\n", split_line[0]);
 	free_tab(split_line);
 	free(trimmed);
-	return (1);
+	return (-1);
 }
 
 int	get_textures_and_colors(t_data *data)
@@ -122,7 +122,7 @@ int	get_textures_and_colors(t_data *data)
 		if (identifier == 'C' || identifier == 'F')
 		{
 			if (check_duplicates(identifier, data) == -1)
-				return (1);
+				return (-1);
 			if (get_color(data, data->parsing.file[i]) == -1)
 				return (-1);
 		}
@@ -130,7 +130,7 @@ int	get_textures_and_colors(t_data *data)
 			|| identifier == 'W' || identifier == 'E')
 		{
 			if (get_texture(data, data->parsing.file[i]) == -1)
-				return (1);
+				return (-1);
 		}
 		else if (verif_values(data) && ft_strchr(data->parsing.file[i], '1'))
 			return (read_map(data, i), 0);

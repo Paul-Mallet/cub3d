@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:02:54 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 18:18:22 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:51:42 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	read_file(char *filename, t_data *data)
 	}
 	return (data->parsing.file[i] = NULL, close(fd), 0);
 }
+
 // read + fill map here
 // find a way to strdup + fill while < max_cols_len
 int	read_map(t_data *data, int i)
@@ -53,11 +54,12 @@ int	read_map(t_data *data, int i)
 	data->parsing.map = (char **)malloc(sizeof(char *) * (lines + 1));
 	if (!data->parsing.map)
 		return (-1);
-	while (data->parsing.file[i]) //rows[i], cols[j]
+	while (data->parsing.file[i])
 	{
-		if (!ft_strcmp(data->parsing.file[i], "\n") || !ft_strchr(data->parsing.file[i], '1'))
+		if (!ft_strcmp(data->parsing.file[i], "\n")
+			|| !ft_strchr(data->parsing.file[i], '1'))
 			break ;
-		data->parsing.map[j] = ft_strdup(data->parsing.file[i]); //dup la row
+		data->parsing.map[j] = ft_strdup(data->parsing.file[i]);
 		tmp = data->parsing.map[j];
 		data->parsing.map[j] = ft_strtrim(data->parsing.map[j], "\n");
 		free(tmp);
