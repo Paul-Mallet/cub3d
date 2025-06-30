@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 19:30:46 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:57:05 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	check_errors(t_data *data)
 		||check_player_surrounded(data) == -1)
 		return (-1);
 	if (check_letter(data) == -1)
-		return (ft_printf("Error\ninvalid char detected\n"), -1);
+		return (ft_printf("Error\nInvalid char detected\n"), -1);
 	return (0);
 }
 
@@ -29,14 +29,14 @@ static void	init_mlx(t_data *data)
 	data->mlx.name = "cub3d_screen";
 	data->mlx.mlx_co = mlx_init();
 	if (!data->mlx.mlx_co)
-		handle_err("Malloc error.", data);
+		handle_err("Error\nMalloc failed\n", data);
 	data->mlx.mlx_win = mlx_new_window(data->mlx.mlx_co,
 			S_WIDTH, S_HEIGHT, data->mlx.name);
 	if (!data->mlx.mlx_win)
 	{
 		mlx_destroy_display(data->mlx.mlx_co);
 		free(data->mlx.mlx_co);
-		handle_err("Malloc error.", data);
+		handle_err("Error\nMalloc failed\n", data);
 	}
 	data->img.img_ptr = mlx_new_image(data->mlx.mlx_co, S_WIDTH, S_HEIGHT);
 	if (!data->img.img_ptr)
@@ -45,7 +45,7 @@ static void	init_mlx(t_data *data)
 		mlx_destroy_display(data->mlx.mlx_co);
 		free(data->mlx.mlx_win);
 		free(data->mlx.mlx_co);
-		handle_err("Malloc error.", data);
+		handle_err("Error\nMalloc failed\n", data);
 	}
 	data->img.addr = mlx_get_data_addr(data->img.img_ptr,
 			&data->img.bpp, &data->img.line_len, &data->img.endian);
@@ -82,7 +82,7 @@ int	main(int argc, char **argv)
 
 	// bfiquet's part
 	if (argc != 2)
-		return (printf("Error : invalid arguments\n"));
+		return (printf("Error\nInvalid arguments\n"));
 	if (init_data(&data, argv) == 1)
 		return (1);
 	if (!check_format(argv[1]))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 09:30:15 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/30 16:48:06 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_color(t_data *data, int *components, char identifier)
 	while (i < 3)
 	{
 		if (components[i] < 0 || components[i] > 255)
-			return (printf("color value %d must be between 0 and 255\n",
+			return (printf("Error\nColor value %d must be between 0 and 255\n",
 					components[i]), 1);
 		i++;
 	}
@@ -54,7 +54,7 @@ int	get_color(t_data *data, char *line)
 			i++;
 	}
 	if (line[i] && !ft_isdigit(line[i]) && ft_strcmp(&line[i], "\n"))
-		return (printf("Error: invalid char detected in color \n"), -1);
+		return (printf("Error\nInvalid char detected in color\n"), -1);
 	if (j == 3 && check_color(data, components, identifier) == 1)
 		return (-1);
 	return (0);
@@ -68,7 +68,7 @@ static int	set_texture(char **split, char *trim, char **tex, char *name)
 	{
 		free_tab(split);
 		free(trim);
-		ft_printf("Error: Duplicate %s texture\n", name);
+		ft_printf("Error\nDuplicate %s texture\n", name);
 		return (1);
 	}
 	tmp = ft_strdup(trim);
@@ -76,7 +76,7 @@ static int	set_texture(char **split, char *trim, char **tex, char *name)
 	if (!tmp)
 	{
 		free_tab(split);
-		ft_printf("Error: malloc failed\n");
+		ft_printf("Error\nMalloc failed\n");
 		return (1);
 	}
 	*tex = tmp;
@@ -91,11 +91,11 @@ int	get_texture(t_data *data, char *line)
 
 	split_line = ft_split(line, ' ');
 	if (!split_line || !split_line[0] || !split_line[1])
-		return (ft_printf("Error: invalid texture line : %s\n", line),
+		return (ft_printf("Error\nInvalid texture line : %s\n", line),
 			free_tab(split_line), 1);
 	trimmed = ft_strtrim(split_line[1], "\n");
 	if (!trimmed)
-		return (ft_printf("Error: malloc failed\n"), free_tab(split_line), 1);
+		return (ft_printf("Error\nMalloc failed\n"), free_tab(split_line), 1);
 	if (ft_strcmp(split_line[0], "WE") == 0)
 		return (set_texture(split_line, trimmed, &data->parsing.text_we, "WE"));
 	if (ft_strcmp(split_line[0], "EA") == 0)
@@ -104,7 +104,7 @@ int	get_texture(t_data *data, char *line)
 		return (set_texture(split_line, trimmed, &data->parsing.text_no, "NO"));
 	if (ft_strcmp(split_line[0], "SO") == 0)
 		return (set_texture(split_line, trimmed, &data->parsing.text_so, "SO"));
-	ft_printf("Unknown texture identifier: %s\n", split_line[0]);
+	ft_printf("Error\nUnknown texture identifier: %s\n", split_line[0]);
 	free_tab(split_line);
 	free(trimmed);
 	return (1);

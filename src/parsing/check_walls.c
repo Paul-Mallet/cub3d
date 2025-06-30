@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:07:37 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 09:35:12 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/30 16:53:27 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	check_line(char *line)
 	while (line[i])
 	{
 		if (line[i] != '1' && line [i] != ' ')
-			return (printf("\033[35mError: last line"
-					"is not closed\035\n\033[0m"), 0);
+			return (printf("Error\nLast line is not closed\n"), 0);
 		i++;
 	}
 	return (1);
@@ -93,8 +92,8 @@ int	check_walls(t_data *data)
 			if (fill.map[i][j] == '0')
 			{
 				if (flood_fill(j, i, &fill) == -1)
-					return (printf("\033[35mError: map is not closed"
-							"\035\n\033[0m"), free_tab(fill.map), -1);
+					return (printf("Error\nMap is not closed"),
+						free_tab(fill.map), -1);
 			}
 			j++;
 		}

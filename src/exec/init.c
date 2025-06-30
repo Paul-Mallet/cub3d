@@ -6,15 +6,14 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:21 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 19:30:40 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:30:59 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static void	which_player_dir(t_data *data)
+static void set_latitude_dirs(t_data *data)
 {
-	printf("data->parsing.orientation: %s|\n", data->parsing.orientation);
 	if (ft_strcmp(data->parsing.orientation, "North") == 0)
 	{
 		data->player.dir_x = -1.0;
@@ -29,7 +28,11 @@ static void	which_player_dir(t_data *data)
 		data->cam.plane_x = 0.0;
 		data->cam.plane_y = -0.66;
 	}
-	else if (ft_strcmp(data->parsing.orientation, "East") == 0)
+}
+
+static void set_longitude_dirs(t_data *data)
+{
+	if (ft_strcmp(data->parsing.orientation, "East") == 0)
 	{
 		data->player.dir_x = 0.0;
 		data->player.dir_y = 1.0;
@@ -45,12 +48,15 @@ static void	which_player_dir(t_data *data)
 	}
 }
 
+static void	which_player_dir(t_data *data)
+{
+	set_latitude_dirs(data);
+	set_longitude_dirs(data);
+}
+
 void	init(t_data *data)
 {
 	convert_map_to_int(data);
-	printf("(double)data->parsing.player_x: %f\n"
-		"(double)data->parsing.player_y: %f\n",
-		(double)data->parsing.player_x, (double)data->parsing.player_y);
 	data->player.pos_x = (double)data->parsing.player_x;
 	data->player.pos_y = (double)data->parsing.player_y;
 	which_player_dir(data);

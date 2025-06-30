@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_spaces.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:50:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 09:39:25 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/30 16:51:58 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ int	check_spaces(t_data *data)
 		{
 			if (data->parsing.map[i][j] == ' ')
 				if (check_space(data, i, j) == -1)
-					return (printf("\033[1;31mError\n\033[1;33mcharacter %c at"
-							" x : %d, y : %d is not surrounded by walls"
-							"\033[0m\n", data->parsing.map[i][j], j + 1, i + 1), -1);
+					return (printf("Error\nCharacter %c at"
+							" x : %d, y : %d is not surrounded by walls\n",
+							data->parsing.map[i][j], j + 1, i + 1), -1);
 			j++;
 		}
 		i++;

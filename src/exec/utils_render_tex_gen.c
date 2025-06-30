@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:15:15 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/29 17:51:13 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:45:26 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	load_image(t_data *data,
 			&tex_w, &tex_h);
 	if (!tex->tex_img)
 	{
-		printf("Failed to load texture: %s\ntex->tex_img: %p\n",
+		printf("Error\nFailed to load texture: %s\ntex->tex_img: %p\n",
 			pathname, tex->tex_img);
 		return ;
 	}

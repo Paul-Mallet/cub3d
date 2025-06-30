@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:49:41 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 17:44:52 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:26:12 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@ int	verif_text_so(t_data *data)
 	int	height;
 
 	if (!data->parsing.text_so)
-		return (ft_printf("No SOUTH texture found\n"), -1);
-	printf("SOUTH texture: %s\n", data->parsing.text_so);
+		return (printf("Error\nNo SOUTH texture found\n"), -1);
 	data->parsing.img_so = mlx_xpm_file_to_image(data->mlx.mlx_co, data->parsing.text_so,
 			&width, &height);
 	if (!data->parsing.img_so)
 	{
-		printf("path not found for SOUTH texture\n");
+		printf("Error\nPath not found for SOUTH texture\n");
 		data->parsing.img_so = NULL;
 		return (-1);
 	}
@@ -37,13 +36,12 @@ int	verif_text_no(t_data *data)
 	int	height;
 
 	if (!data->parsing.text_no)
-		return (ft_printf("No NORTH texture found\n"), -1);
-	printf("NORTH texture: %s\n", data->parsing.text_no);
+		return (printf("Error\nNo NORTH texture found\n"), -1);
 	data->parsing.img_no = mlx_xpm_file_to_image(data->mlx.mlx_co, data->parsing.text_no,
 			&width, &height);
 	if (!data->parsing.img_no)
 	{
-		printf("path not found for NORTH texture\n");
+		printf("Error\nPath not found for NORTH texture\n");
 		data->parsing.img_no = NULL;
 		return (-1);
 	}
@@ -56,13 +54,12 @@ int	verif_text_ea(t_data *data)
 	int	height;
 
 	if (!data->parsing.text_ea)
-		return (ft_printf("No EAST texture found\n"), -1);
-	printf("EAST texture: %s\n", data->parsing.text_ea);
+		return (printf("Error\nNo EAST texture found\n"), -1);
 	data->parsing.img_ea = mlx_xpm_file_to_image(data->mlx.mlx_co, data->parsing.text_ea,
 			&width, &height);
 	if (!data->parsing.img_ea)
 	{
-		printf("path not found for EAST texture: %s\n", data->parsing.text_ea);
+		printf("Error\nPath not found for EAST texture: %s\n", data->parsing.text_ea);
 		data->parsing.img_ea = NULL;
 		return (-1);
 	}
@@ -75,13 +72,12 @@ int	verif_text_we(t_data *data)
 	int	height;
 
 	if (!data->parsing.text_we)
-		return (ft_printf("No WEST texture found\n"), -1);
-	printf("WEST texture: %s\n", data->parsing.text_we);
+		return (printf("Error\nNo WEST texture found\n"), -1);
 	data->parsing.img_we = mlx_xpm_file_to_image(data->mlx.mlx_co, data->parsing.text_we,
 			&width, &height);
 	if (!data->parsing.img_we)
 	{
-		printf("path not found for WEST texture\n");
+		printf("Error\nPath not found for WEST texture\n");
 		data->parsing.img_we = NULL;
 		return (-1);
 	}

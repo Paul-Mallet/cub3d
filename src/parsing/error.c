@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:20:57 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 18:21:01 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:55:53 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ int	count_lines(char *filename, t_data *data)
 	len = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (ft_printf("Error\nCan't read the file\n"), -1);
+		return (printf("Error\nCan't read the file\n"), -1);
 	bit = 1;
 	while (bit)
 	{
 		bit = read(fd, &c, 1);
 		if (bit == -1)
-			return (close (fd), ft_printf("Error\n"));
+			return (close(fd), printf("Error\nRead file failed\n"));
 		if (c == '\n')
 			len++;
 	}
@@ -68,7 +68,7 @@ int	count_lines(char *filename, t_data *data)
 		len++;
 	if (bit == '\n')
 		error_map(data);
-	return (close (fd), len);
+	return (close(fd), len);
 }
 
 int	free_tab(char **tab)
@@ -93,6 +93,6 @@ void	error_map(t_data *data)
 		free_tab(data->parsing.file);
 	if (data->parsing.map)
 		free_tab(data->parsing.map);
-	ft_printf("Error\nInvalid map\n");
+	printf("Error\nInvalid map\n");
 	exit(0);
 }

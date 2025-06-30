@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 10:59:38 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 09:50:43 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/30 16:21:08 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,15 @@ int	close_game(t_data *data)
 {
 	if (data->parsing.orientation)
 		free(data->parsing.orientation);
-	free_textures_and_images(data);
-	mlx_destroy_display(data->mlx.mlx_co);
-	free(data->mlx.mlx_co);
 	if (data->parsing.map)
 		free_tab(data->parsing.map);
 	if (data->parsing.file)
 		free_tab(data->parsing.file);
+	free_textures_and_images(data);
+	mlx_destroy_image(data->mlx.mlx_co, data->img.img_ptr);
+	mlx_destroy_window(data->mlx.mlx_co, data->mlx.mlx_win);
+	mlx_destroy_display(data->mlx.mlx_co);
+	free(data->mlx.mlx_co);
 	exit(0);
 	return (0);
 }

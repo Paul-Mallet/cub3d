@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:26:16 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/28 09:38:12 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/06/30 16:51:26 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int	check_player_surrounded(t_data *data)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (data->parsing.map[i])
+	i = -1;
+	while (data->parsing.map[++i])
 	{
-		j = 0;
-		while (data->parsing.map[i][j])
+		j = -1;
+		while (data->parsing.map[i][++j])
 		{
 			if (check_player_char(data->parsing.map[i][j]))
 			{
@@ -50,14 +50,16 @@ int	check_player_surrounded(t_data *data)
 					|| !data->parsing.map[i][j + 1])
 					return (printf("Error\nPlayer at the"
 							" edge of the map\n"), -1);
-				if (data->parsing.map[i - 1][j] == ' ' || data->parsing.map[i + 1][j] == ' ' ||
-					data->parsing.map[i][j - 1] == ' ' || data->parsing.map[i][j + 1] == ' ')
+				if (data->parsing.map[i - 1][j] == ' '
+					|| data->parsing.map[i + 1][j] == ' '
+					|| data->parsing.map[i][j - 1] == ' '
+					|| data->parsing.map[i][j + 1] == ' ')
 					return (printf("Error\nPlayer is not "
 							"properly surrounded\n"), -1);
 			}
-			j++;
+			// j++;
 		}
-		i++;
+		// i++;
 	}
 	return (0);
 }
@@ -87,6 +89,6 @@ int	check_player(t_data *data)
 		i++;
 	}
 	if (data->parsing.player_count != 1)
-		return (printf("No player found\n"));
+		return (printf("Error\nNo player found\n"));
 	return (0);
 }
