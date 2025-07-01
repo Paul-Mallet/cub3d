@@ -6,12 +6,13 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:19 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 19:05:04 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:04:38 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+// where I call it, depends on seg fault?
 int	handle_close(t_data *data)
 {
 	free(data->parsing.orientation);
@@ -93,6 +94,61 @@ void	handle_left_dir(t_data *data)
 	cam->plane_y = cam->old_plane_x * sin(speed->rot)
 		+ cam->plane_y * cos(speed->rot);
 }
+
+int	handle_keys_press(int key_sym, t_data *data)
+{
+	if (key_sym == XK_w)
+		data->keys.up = 1;
+	else if (key_sym == XK_s)
+		data->keys.down = 1;
+	else if (key_sym == XK_d)
+		data->keys.right = 1;
+	else if (key_sym == XK_a)
+		data->keys.left = 1;
+	else if (key_sym == XK_Right)
+		data->keys.right_dir = 1;
+	else if (key_sym == XK_Left)
+		data->keys.left_dir = 1;
+	return (0);
+}
+
+int	handle_keys_release(int key_sym, t_data *data)
+{
+	if (key_sym == XK_w)
+		data->keys.up = 0;
+	else if (key_sym == XK_s)
+		data->keys.down = 0;
+	else if (key_sym == XK_d)
+		data->keys.right = 0;
+	else if (key_sym == XK_a)
+		data->keys.left = 0;
+	else if (key_sym == XK_Right)
+		data->keys.right_dir = 0;
+	else if (key_sym == XK_Left)
+		data->keys.left_dir = 0;
+	return (0);
+}
+
+// int	handle_keys(int key_sym, t_data *data)
+// {
+// 	setup_next_moves(data);
+// 	if (key_sym == XK_Escape)
+// 		handle_close(data);
+// 	else if (data->keys.up)
+// 		handle_up(data);
+// 	else if (data->keys.down)
+// 		handle_down(data);
+// 	else if (data->keys.right)
+// 		handle_right(data);
+// 	else if (data->keys.left)
+// 		handle_left(data);
+// 	else if (data->keys.right_dir)
+// 		handle_right_dir(data);
+// 	else if (data->keys.left_dir)
+// 		handle_left_dir(data);
+// 	render(data);
+// 	return (0);
+// }
 
 int	handle_keys(int key_sym, t_data *data)
 {

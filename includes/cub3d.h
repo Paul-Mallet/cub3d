@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 19:04:18 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:03:30 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,12 @@ typedef struct s_speed
 */
 typedef struct s_keys
 {
+	int	up;
+	int	down;
+	int	left;
+	int	right;
+	int	left_dir;
+	int	right_dir;
 	int	curr_map_x;
 	int	curr_map_y;
 	int	next_map_x_up;
@@ -375,11 +381,12 @@ void		handle_left(t_data *data);
 void		handle_right_dir(t_data *data);
 void		handle_left_dir(t_data *data);
 int			handle_keys(int key_sym, t_data *data);
+int			handle_keys_press(int key_sym, t_data *data);
+int			handle_keys_release(int key_sym, t_data *data);
 
 // UTILS
 void		*ft_memset(void *s, int c, size_t n);
 int			ft_intlen(int nb);
-double		get_ticks(void);
 double		ft_abs(double dir);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 double		my_clamped_formula(double (*formula)(double), double input);
