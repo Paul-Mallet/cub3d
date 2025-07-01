@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/01 11:03:59 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/07/01 14:22:03 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	get_color(t_data *data, char *line)
 		components[j++] = ft_atoi(&line[i]);
 		while (line[i] && ft_isdigit(line[i]))
 			i++;
-		if (line[i] == ',')
+		while (line[i] && line[i] == ',')
 			i++;
 	}
 	while (line[i] == ' ' || line[i] == '\t')
@@ -71,7 +71,7 @@ static int	set_texture(char **split, char *trim, char **tex, char *name)
 		free_tab(split);
 		free(trim);
 		ft_printf("Error\nDuplicate %s texture\n", name);
-		return (1);
+		return (-1);
 	}
 	tmp = ft_strdup(trim);
 	free(trim);
@@ -79,7 +79,7 @@ static int	set_texture(char **split, char *trim, char **tex, char *name)
 	{
 		free_tab(split);
 		ft_printf("Error\nMalloc failed\n");
-		return (1);
+		return (-1);
 	}
 	*tex = tmp;
 	free_tab(split);

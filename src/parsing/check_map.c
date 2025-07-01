@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:02:54 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 18:51:42 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/01 14:23:40 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int	read_map(t_data *data, int i)
 	while (data->parsing.file[i])
 	{
 		if (!ft_strcmp(data->parsing.file[i], "\n")
-			|| !ft_strchr(data->parsing.file[i], '1'))
+			|| (!ft_strchr(data->parsing.file[i], '1')
+				&& !ft_strchr(data->parsing.file[i], '0')))
 			break ;
 		data->parsing.map[j] = ft_strdup(data->parsing.file[i]);
 		tmp = data->parsing.map[j];
