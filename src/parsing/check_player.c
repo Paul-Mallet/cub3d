@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:26:16 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/01 13:45:14 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/07/01 15:48:11 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,11 @@ int	check_player(t_data *data)
 	int	i;
 	int	j;
 
-	i = 0;
-	j = 0;
-	while (data->parsing.map[i++])
+	i = -1;
+	while (data->parsing.map[++i])
 	{
-		j = 0;
-		while (data->parsing.map[i][j++])
+		j = -1;
+		while (data->parsing.map[i][++j])
 		{
 			if (data->parsing.map[i][j]
 				&& check_player_char(data->parsing.map[i][j])
