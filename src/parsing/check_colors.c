@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 19:07:56 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/01 11:03:59 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,24 @@ int	get_color(t_data *data, char *line)
 	int		j;
 	char	identifier;
 
-	i = 0;
+	i = 1;
 	j = 0;
 	identifier = line[0];
-	while (line[i] && !ft_isdigit(line[i]))
+	while (line[i] && line[i] == ' ')
 		i++;
-	while (j < 3 && line[i])
+	while (line[i] && j < 3)
 	{
 		components[j++] = ft_atoi(&line[i]);
 		while (line[i] && ft_isdigit(line[i]))
 			i++;
-		while (line[i] && line[i] == ',')
+		if (line[i] == ',')
 			i++;
 	}
-	if (line[i] && !ft_isdigit(line[i]) && ft_strcmp(&line[i], "\n"))
-		return (printf("Error\nInvalid char detected in color\n"), -1);
-	if (j == 3 && check_color(data, components, identifier) == 1)
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] && line[i] != '\n' && line[i] != '\0')
+		return (printf("Error\nInvalid characters in color values\n"), -1);
+	if (check_color(data, components, identifier) == 1)
 		return (-1);
 	return (0);
 }

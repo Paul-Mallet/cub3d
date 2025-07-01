@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:25 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 18:38:17 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/01 11:20:23 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	print_data(t_data *data)
 		data->cam.plane_x, data->cam.plane_y,
 		data->grid.map_x, data->grid.map_y,
 		data->grid.wall.is_hit, data->grid.wall.which_side
-	);
+		);
 }

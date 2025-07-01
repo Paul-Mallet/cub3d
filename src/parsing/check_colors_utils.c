@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_colors_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:58:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 16:46:17 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/01 11:04:08 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	verif_values(t_data *data)
 {
 	if (data->parsing.color_c == -1 || data->parsing.color_f == -1)
 		return (0);
-	if (!data->parsing.text_ea || !data->parsing.text_we || !data->parsing.text_no || !data->parsing.text_so)
+	if (!data->parsing.text_ea || !data->parsing.text_we
+		|| !data->parsing.text_no || !data->parsing.text_so)
 		return (0);
 	return (1);
 }
