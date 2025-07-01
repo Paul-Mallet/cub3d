@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/29 19:04:18 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/01 13:42:53 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -344,16 +344,16 @@ void		render(t_data *data);
 
 // TEXTURES
 void		generate_textures(t_data *data,
-		int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH]);
+				int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH]);
 void		draw_tex_buff(t_data *data,
-		u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+				u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
 void		clear_tex_buff(t_data *data,
-		u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+				u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
 
 // FLOOR & CEILING
 void		floor_casting(t_data *data,
-		int textures[TEX_NUM][TEX_WIDTH *TEX_HEIGHT],
-		u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+				int textures[TEX_NUM][TEX_WIDTH *TEX_HEIGHT],
+				u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
 
 // COMPUTE DISTANCES
 void		get_next_side_dist(t_data *data);
@@ -362,8 +362,8 @@ void		digit_diff_analyzer(t_data *data);
 
 // DRAWING PIXELS
 void		draw_my_pixel_line(t_data *data,
-		int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH],
-		u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+				int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH],
+				u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
 
 // HOOKS
 int			handle_close(t_data *data);

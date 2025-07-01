@@ -1,7 +1,7 @@
-N ./textures/eagle.xpm
-S ./textures/mossy.xpm
-W ./textures/purplestone.xpm
-E ./textures/colorstone.xpm
+NO ./textures/eagle.xpm
+SO ./textures/mossy.xpm
+WE ./textures/purplestone.xpm
+EA ./textures/colorstone.xpm
                      
 F 255,244,235
 C 145,200,228
