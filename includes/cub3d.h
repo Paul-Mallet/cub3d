@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/01 13:42:53 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/07/01 14:25:57 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,9 +351,7 @@ void		clear_tex_buff(t_data *data,
 				u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
 
 // FLOOR & CEILING
-void		floor_casting(t_data *data,
-				int textures[TEX_NUM][TEX_WIDTH *TEX_HEIGHT],
-				u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+void		floor_casting(t_data *data);
 
 // COMPUTE DISTANCES
 void		get_next_side_dist(t_data *data);
