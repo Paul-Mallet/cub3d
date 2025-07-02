@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/02 21:59:10 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/02 22:00:25 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -361,9 +361,7 @@ void		clear_tex_buff(t_data *data,
 				u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
 
 // FLOOR & CEILING
-void		floor_casting(t_data *data,
-				int textures[TEX_NUM][TEX_WIDTH *TEX_HEIGHT],
-				u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+void		floor_casting(t_data *data);
 
 // COMPUTE DISTANCES
 void		get_next_side_dist(t_data *data);

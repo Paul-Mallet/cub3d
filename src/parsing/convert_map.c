@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   convert_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 08:58:13 by paul_mallet       #+#    #+#             */
-/*   Updated: 2025/06/30 18:32:07 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:05:58 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	print_map_int(t_data *data)
-{
-	int	x;
-	int	y;
+// void	print_map_int(t_data *data)
+// {
+// 	int	x;
+// 	int	y;
 
-	x = -1;
-	while (++x < data->parsing.map_line_number)
-	{
-		y = -1;
-		while (data->parsing.map[x][++y])
-			printf("%d", data->parsing.map_int[x][y]);
-		printf("\n");
-	}
-}
+// 	x = -1;
+// 	while (++x < data->parsing.map_line_number)
+// 	{
+// 		y = -1;
+// 		while (data->parsing.map[x][++y])
+// 			printf("%d", data->parsing.map_int[x][y]);
+// 		printf("\n");
+// 	}
+// }
 
 // void	print_map_char(t_data *data)
 // {
@@ -55,7 +55,7 @@ static void	malloc_cols(t_data *data, int rows)
 	int	y;
 
 	x = -1;
-    while (++x < rows)
+	while (++x < rows)
 	{
 		y = 0;
 		while (data->parsing.map[x][y])
@@ -63,7 +63,7 @@ static void	malloc_cols(t_data *data, int rows)
 		data->parsing.map_int[x] = (int *)malloc(y * sizeof(int));
 		if (!data->parsing.map_int[x])
 			handle_err("Error\nMalloc failed\n", data);
-    }
+	}
 }
 
 // full fill empty(space already handle) in char** map;
@@ -75,7 +75,7 @@ void	convert_map_to_int(t_data *data)
 	int	y;
 	int	rows;
 	int	char_cell;
-	
+
 	rows = data->parsing.map_line_number;
 	malloc_rows(data, rows);
 	malloc_cols(data, rows);
@@ -95,5 +95,4 @@ void	convert_map_to_int(t_data *data)
 				data->parsing.map_int[x][y] = char_cell - '0';
 		}
 	}
-	print_map_int(data);
 }

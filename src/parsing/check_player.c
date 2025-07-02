@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:26:16 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 19:01:34 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:04:04 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ int	check_player_surrounded(t_data *data)
 					return (printf("Error\nPlayer is not "
 							"properly surrounded\n"), -1);
 			}
-			// j++;
 		}
-		// i++;
 	}
 	return (0);
 }
@@ -69,24 +67,23 @@ int	check_player(t_data *data)
 	int	i;
 	int	j;
 
-	i = 0;
-	j = 0;
-	while (data->parsing.map[i])
+	i = -1;
+	while (data->parsing.map[++i])
 	{
-		j = 0;
-		while (data->parsing.map[i][j])
+		j = -1;
+		while (data->parsing.map[i][++j])
 		{
-			if (data->parsing.map[i][j] && check_player_char(data->parsing.map[i][j])
+			if (data->parsing.map[i][j]
+				&& check_player_char(data->parsing.map[i][j])
 				&& data->parsing.player_count == 1)
 				return (printf("Error\nToo many players\n"), -1);
-			if (data->parsing.map[i][j] && check_player_char(data->parsing.map[i][j]))
+			if (data->parsing.map[i][j]
+				&& check_player_char(data->parsing.map[i][j]))
 			{
 				data->parsing.player_count++;
 				get_orientation(data, data->parsing.map[i][j], i, j);
 			}
-			j++;
 		}
-		i++;
 	}
 	if (data->parsing.player_count != 1)
 	{
