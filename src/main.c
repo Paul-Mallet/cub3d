@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/01 18:03:52 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/02 09:08:27 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	// bfiquet's part
 	if (argc != 2)
 		return (printf("Error\nInvalid arguments\n"));
 	if (init_data(&data, argv) == 1)
@@ -94,11 +93,14 @@ int	main(int argc, char **argv)
 	if (check_walls(&data) == -1)
 		return (close_game(&data));
 	init(&data);
+	render(&data);
 	mlx_hook(data.mlx.mlx_win,
 		DestroyNotify, StructureNotifyMask, &handle_close, &data);
 	mlx_hook(data.mlx.mlx_win,
-		KeyPress, KeyPressMask, &handle_keys, &data);
-	render(&data);
+		KeyPress, KeyPressMask, &handle_keys_press, &data);
+	mlx_hook(data.mlx.mlx_win,
+		KeyRelease, KeyReleaseMask, &handle_keys_release, &data);
+	mlx_loop_hook(data.mlx.mlx_co, &handle_keys, &data);
 	mlx_loop(data.mlx.mlx_co);
 	return (0);
 }

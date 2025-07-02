@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/01 18:03:30 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/02 09:29:58 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,7 @@ typedef struct s_speed
 */
 typedef struct s_keys
 {
+	int	close;
 	int	up;
 	int	down;
 	int	left;
@@ -380,7 +381,7 @@ void		handle_right(t_data *data);
 void		handle_left(t_data *data);
 void		handle_right_dir(t_data *data);
 void		handle_left_dir(t_data *data);
-int			handle_keys(int key_sym, t_data *data);
+int			handle_keys(t_data *data);
 int			handle_keys_press(int key_sym, t_data *data);
 int			handle_keys_release(int key_sym, t_data *data);
 

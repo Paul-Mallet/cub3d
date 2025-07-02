@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:21 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 16:30:59 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/02 09:30:22 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,17 @@ static void	which_player_dir(t_data *data)
 	set_longitude_dirs(data);
 }
 
+static void	setup_keys_bool(t_data *data)
+{
+	data->keys.close = 0;
+	data->keys.up = 0;
+	data->keys.down = 0;
+	data->keys.right = 0;
+	data->keys.left = 0;
+	data->keys.right_dir = 0;
+	data->keys.left_dir = 0;
+}
+
 void	init(t_data *data)
 {
 	convert_map_to_int(data);
@@ -63,4 +74,5 @@ void	init(t_data *data)
 	data->grid.map_x = (int)data->player.pos_x;
 	data->grid.map_y = (int)data->player.pos_y;
 	data->grid.wall.is_hit = 0;
+	setup_keys_bool(data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:19 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/01 18:04:38 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/02 09:30:36 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,9 @@ void	handle_left_dir(t_data *data)
 
 int	handle_keys_press(int key_sym, t_data *data)
 {
+	// setup_next_moves(data);
+	if (key_sym == XK_Escape)
+		data->keys.close = 1;
 	if (key_sym == XK_w)
 		data->keys.up = 1;
 	else if (key_sym == XK_s)
@@ -105,15 +108,18 @@ int	handle_keys_press(int key_sym, t_data *data)
 		data->keys.right = 1;
 	else if (key_sym == XK_a)
 		data->keys.left = 1;
-	else if (key_sym == XK_Right)
+	if (key_sym == XK_Right)
 		data->keys.right_dir = 1;
-	else if (key_sym == XK_Left)
+	if (key_sym == XK_Left)
 		data->keys.left_dir = 1;
 	return (0);
 }
 
 int	handle_keys_release(int key_sym, t_data *data)
 {
+	// setup_next_moves(data);
+	if (key_sym == XK_Escape)
+		data->keys.close = 0;
 	if (key_sym == XK_w)
 		data->keys.up = 0;
 	else if (key_sym == XK_s)
@@ -122,50 +128,29 @@ int	handle_keys_release(int key_sym, t_data *data)
 		data->keys.right = 0;
 	else if (key_sym == XK_a)
 		data->keys.left = 0;
-	else if (key_sym == XK_Right)
+	if (key_sym == XK_Right)
 		data->keys.right_dir = 0;
-	else if (key_sym == XK_Left)
+	if (key_sym == XK_Left)
 		data->keys.left_dir = 0;
 	return (0);
 }
 
-// int	handle_keys(int key_sym, t_data *data)
-// {
-// 	setup_next_moves(data);
-// 	if (key_sym == XK_Escape)
-// 		handle_close(data);
-// 	else if (data->keys.up)
-// 		handle_up(data);
-// 	else if (data->keys.down)
-// 		handle_down(data);
-// 	else if (data->keys.right)
-// 		handle_right(data);
-// 	else if (data->keys.left)
-// 		handle_left(data);
-// 	else if (data->keys.right_dir)
-// 		handle_right_dir(data);
-// 	else if (data->keys.left_dir)
-// 		handle_left_dir(data);
-// 	render(data);
-// 	return (0);
-// }
-
-int	handle_keys(int key_sym, t_data *data)
+int	handle_keys(t_data *data)
 {
 	setup_next_moves(data);
-	if (key_sym == XK_Escape)
+	if (data->keys.close)
 		handle_close(data);
-	else if (key_sym == XK_w)
+	if (data->keys.up)
 		handle_up(data);
-	else if (key_sym == XK_s)
+	else if (data->keys.down)
 		handle_down(data);
-	else if (key_sym == XK_d)
+	else if (data->keys.right)
 		handle_right(data);
-	else if (key_sym == XK_a)
+	else if (data->keys.left)
 		handle_left(data);
-	else if (key_sym == XK_Right)
+	if (data->keys.right_dir)
 		handle_right_dir(data);
-	else if (key_sym == XK_Left)
+	if (data->keys.left_dir)
 		handle_left_dir(data);
 	render(data);
 	return (0);

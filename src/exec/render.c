@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:27 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 16:32:10 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/02 09:24:52 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	speed_modifiers(t_data *data)
 	t_speed	*speed;
 
 	speed = &data->speed;
-	speed->mov = 0.005 * 30.0;
-	speed->rot = 0.005 * 20.0;
+	speed->mov = 0.005 * 5.0;
+	speed->rot = 0.005 * 4.0;
 }
 
 void	render(t_data *data)
