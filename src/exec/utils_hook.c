@@ -6,11 +6,29 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:09:50 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/28 10:02:18 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/02 09:33:37 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+// where I call it, depends on seg fault?
+int	handle_close(t_data *data)
+{
+	free(data->parsing.orientation);
+	free_textures_and_images(data);
+	if (data->parsing.file)
+		free_tab(data->parsing.file);
+	if (data->parsing.map)
+		free_tab(data->parsing.map);
+	if (data->parsing.map_int)
+		free_map_int(data);
+	mlx_destroy_image(data->mlx.mlx_co, data->img.img_ptr);
+	mlx_destroy_window(data->mlx.mlx_co, data->mlx.mlx_win);
+	mlx_destroy_display(data->mlx.mlx_co);
+	free(data->mlx.mlx_co);
+	exit(EXIT_SUCCESS);
+}
 
 void	handle_up(t_data *data)
 {

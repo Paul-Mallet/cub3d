@@ -6,29 +6,11 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:19 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/02 09:30:36 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/02 09:33:32 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-// where I call it, depends on seg fault?
-int	handle_close(t_data *data)
-{
-	free(data->parsing.orientation);
-	free_textures_and_images(data);
-	if (data->parsing.file)
-		free_tab(data->parsing.file);
-	if (data->parsing.map)
-		free_tab(data->parsing.map);
-	if (data->parsing.map_int)
-		free_map_int(data);
-	mlx_destroy_image(data->mlx.mlx_co, data->img.img_ptr);
-	mlx_destroy_window(data->mlx.mlx_co, data->mlx.mlx_win);
-	mlx_destroy_display(data->mlx.mlx_co);
-	free(data->mlx.mlx_co);
-	exit(EXIT_SUCCESS);
-}
 
 void	setup_next_moves(t_data *data)
 {
@@ -97,7 +79,6 @@ void	handle_left_dir(t_data *data)
 
 int	handle_keys_press(int key_sym, t_data *data)
 {
-	// setup_next_moves(data);
 	if (key_sym == XK_Escape)
 		data->keys.close = 1;
 	if (key_sym == XK_w)
@@ -117,7 +98,6 @@ int	handle_keys_press(int key_sym, t_data *data)
 
 int	handle_keys_release(int key_sym, t_data *data)
 {
-	// setup_next_moves(data);
 	if (key_sym == XK_Escape)
 		data->keys.close = 0;
 	if (key_sym == XK_w)
