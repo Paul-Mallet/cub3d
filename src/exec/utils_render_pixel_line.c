@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:23:40 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/28 10:02:33 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/02 21:53:15 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,15 @@ void	put_texel_color(t_data *data,
 	u_int32_t tex_buff[S_HEIGHT][S_WIDTH])
 {
 	t_tex		*tex;
-	t_grid		*grid;
 	t_draw		*draw;
 	t_screen	*screen;
 	int			y;
 
 	tex = &data->tex;
-	grid = &data->grid;
 	draw = &data->draw;
 	screen = &data->screen;
 	y = draw->draw_start;
-	tex->tex_index = data->parsing.map_int[grid->map_x][grid->map_y] - 1;
+	tex->tex_index = get_tex_index(data);
 	tex->step = 1.0 * TEX_HEIGHT / draw->line_height;
 	tex->pos = (draw->draw_start - S_HEIGHT / 2 + draw->line_height / 2)
 		* tex->step;
@@ -36,8 +34,6 @@ void	put_texel_color(t_data *data,
 		tex->y = (int)tex->pos & (TEX_HEIGHT - 1);
 		tex->pos += tex->step;
 		tex->color = textures[tex->tex_index][TEX_HEIGHT * tex->y + tex->x];
-		if (data->grid.wall.which_side == 1)
-			tex->color = (tex->color >> 1) & 8355711;
 		tex_buff[y][screen->x] = tex->color;
 		y++;
 	}

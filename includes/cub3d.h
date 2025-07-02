@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/02 09:29:58 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/02 21:59:10 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@
 # define _GNU_SOURCE
 
 //macros
-# define S_WIDTH	640
+# define S_WIDTH	720
 # define S_HEIGHT	480
 
 // wall, ceil, floor textures and resolutions
 // only handle 64x64? so return error if not at proper size in parsing
-# define TEX_NUM	8
+# define TEX_NUM	4
 # define TEX_WIDTH	64
 # define TEX_HEIGHT	64
 
@@ -46,6 +46,8 @@
 
 # define X_STR		4
 # define Y_STR		4
+
+# define M_PI 3.14159265358979323846
 
 # define RED		0xFF0000
 # define GREEN		0x00FF00
@@ -268,9 +270,9 @@ typedef struct s_floor
 
 typedef struct s_fill_data
 {
-	char	**map;
-	int		rows;
-	int		cols;
+	char		**map;
+	int			rows;
+	int			cols;
 }	t_fill_data;
 
 typedef struct s_parsing
@@ -350,17 +352,18 @@ void		init(t_data *data);
 void		render(t_data *data);
 
 // TEXTURES
+int			get_tex_index(t_data *data);
 void		generate_textures(t_data *data,
-		int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH]);
+				int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH]);
 void		draw_tex_buff(t_data *data,
-		u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+				u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
 void		clear_tex_buff(t_data *data,
-		u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+				u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
 
 // FLOOR & CEILING
 void		floor_casting(t_data *data,
-		int textures[TEX_NUM][TEX_WIDTH *TEX_HEIGHT],
-		u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+				int textures[TEX_NUM][TEX_WIDTH *TEX_HEIGHT],
+				u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
 
 // COMPUTE DISTANCES
 void		get_next_side_dist(t_data *data);
@@ -369,8 +372,8 @@ void		digit_diff_analyzer(t_data *data);
 
 // DRAWING PIXELS
 void		draw_my_pixel_line(t_data *data,
-		int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH],
-		u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
+				int textures[TEX_NUM][TEX_HEIGHT*TEX_WIDTH],
+				u_int32_t tex_buff[S_HEIGHT][S_WIDTH]);
 
 // HOOKS
 int			handle_close(t_data *data);

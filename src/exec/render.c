@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:27 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/02 09:24:52 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/02 21:55:08 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ void	render(t_data *data)
 	}
 	draw_tex_buff(data, tex_buff);
 	speed_modifiers(data);
-	// print_map_int(data);
-	// print_map_char(data);
 	mlx_put_image_to_window(mlx->mlx_co, mlx->mlx_win,
 		data->img.img_ptr, 0, 0);
 }

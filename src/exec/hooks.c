@@ -6,34 +6,11 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:19 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/02 09:33:32 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/02 21:56:22 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-void	setup_next_moves(t_data *data)
-{
-	t_player	*player;
-	t_cam		*cam;
-	t_speed		*speed;
-	t_keys		*keys;
-
-	player = &data->player;
-	cam = &data->cam;
-	speed = &data->speed;
-	keys = &data->keys;
-	keys->curr_map_x = (int)(player->pos_x);
-	keys->curr_map_y = (int)(player->pos_y);
-	keys->next_map_x_up = (int)(player->pos_x + player->dir_x * speed->mov);
-	keys->next_map_y_up = (int)(player->pos_y + player->dir_y * speed->mov);
-	keys->next_map_x_down = (int)(player->pos_x - player->dir_x * speed->mov);
-	keys->next_map_y_down = (int)(player->pos_y - player->dir_y * speed->mov);
-	keys->next_map_x_right = (int)(player->pos_x + cam->plane_x * speed->mov);
-	keys->next_map_y_right = (int)(player->pos_y + cam->plane_y * speed->mov);
-	keys->next_map_x_left = (int)(player->pos_x - cam->plane_x * speed->mov);
-	keys->next_map_y_left = (int)(player->pos_y - cam->plane_y * speed->mov);
-}
 
 void	handle_right_dir(t_data *data)
 {

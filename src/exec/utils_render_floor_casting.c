@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render_floor_casting.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:19:54 by pamallet          #+#    #+#             */
-/*   Updated: 2025/06/29 19:20:16 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:55:00 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,9 @@ void	texturing_horiz_line(t_data *data,
 			(TEX_HEIGHT * (floor->y - floor->cell_y)) & (TEX_HEIGHT - 1);
 		floor->x += floor->step_x;
 		floor->y += floor->step_y;
-		// change by simple rgb colors, change using part 1 in this part 2
-		// floor
 		tex->color = textures[1][TEX_WIDTH * tex->floor_y + tex->floor_x];
 		tex->color = (tex->color >> 1) & 8355711;
 		tex_buff[y][x] = tex->color;
-		// ceiling
 		tex->color = textures[2][TEX_WIDTH * tex->floor_y + tex->floor_x];
 		tex->color = (tex->color >> 1) & 8355711;
 		tex_buff[S_HEIGHT - y - 1][x] = tex->color;
@@ -62,16 +59,12 @@ void	drawing_horiz_line(t_data *data, int y)
 	}
 }
 
-void	floor_casting(t_data *data,
-	int textures[TEX_NUM][TEX_WIDTH *TEX_HEIGHT],
-	u_int32_t tex_buff[S_HEIGHT][S_WIDTH])
+void	floor_casting(t_data *data)
 {
 	int			y;
 	t_ray		*ray;
 	t_floor		*floor;
 
-	(void)textures;
-	(void)tex_buff;
 	ray = &data->ray;
 	floor = &data->floor;
 	y = S_HEIGHT / 2 - 1;

@@ -6,13 +6,13 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:21 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/02 09:30:22 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/02 21:55:59 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static void set_latitude_dirs(t_data *data)
+static void	set_latitude_dirs(t_data *data)
 {
 	if (ft_strcmp(data->parsing.orientation, "North") == 0)
 	{
@@ -30,7 +30,7 @@ static void set_latitude_dirs(t_data *data)
 	}
 }
 
-static void set_longitude_dirs(t_data *data)
+static void	set_longitude_dirs(t_data *data)
 {
 	if (ft_strcmp(data->parsing.orientation, "East") == 0)
 	{
