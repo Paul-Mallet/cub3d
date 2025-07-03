@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:02:54 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 18:51:42 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:43:33 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	read_file(char *filename, t_data *data)
 }
 
 // read + fill map here
-// find a way to strdup + fill while < max_cols_len
+// check empty line?
 int	read_map(t_data *data, int i)
 {
 	int		j;

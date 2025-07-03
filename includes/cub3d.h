@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/03 15:58:17 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:40:38 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,6 +289,7 @@ typedef struct s_parsing
 	int			player_count;
 	int			player_x;
 	int			player_y;
+	int			is_empty;
 	char		*text_so;
 	char		*text_no;
 	char		*text_ea;

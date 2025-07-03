@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/03 16:20:28 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/03 19:28:32 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,22 @@ int	get_texture(t_data *data, char *line)
 	return (-1);
 }
 
+int	check_empty_line(t_data *data, int i)
+{
+	int	j;
+
+	j = 0;
+	printf("line[%d]: |%s|\n", i + 1, data->parsing.file[i]);
+	while (data->parsing.file[i][j] == '\n')
+		j++;
+	if (j == 0)
+	{
+		data->parsing.is_empty = 0;
+		return (-1);
+	}
+	return (0);
+}
+
 int	get_textures_and_colors(t_data *data)
 {
 	int		i;
@@ -120,23 +136,27 @@ int	get_textures_and_colors(t_data *data)
 	i = 0;
 	while (data->parsing.file[i])
 	{
-		identifier = data->parsing.file[i][0];
+		identifier = data->parsing.file[i][0]; //1rst char of each line
 		if (identifier == 'C' || identifier == 'F')
 		{
 			if (check_duplicates(identifier, data) == -1)
 				return (-1);
 			if (get_color(data, data->parsing.file[i]) == -1)
 				return (-1);
+			// i++;
 		}
 		else if (identifier == 'S' || identifier == 'N'
 			|| identifier == 'W' || identifier == 'E')
 		{
 			if (get_texture(data, data->parsing.file[i]) == -1)
 				return (-1);
+			// i++;
 		}
 		else if (verif_values(data) && ft_strchr(data->parsing.file[i], '1'))
 			return (read_map(data, i), 0);
-		i++;
+		// else if (check_empty_line(data, i) == -1)
+		// 	break ;
+		i++; //skip empty line only + check after textures, only spaces
 	}
 	return (print_error(data), -1);
 }

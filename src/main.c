@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:59:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/02 09:08:27 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/03 18:36:10 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	init_mlx(t_data *data)
 
 static int	init_data(t_data *data, char **argv)
 {
+	data->parsing.is_empty = 1;
 	data->parsing.text_ea = NULL;
 	data->parsing.text_we = NULL;
 	data->parsing.text_no = NULL;
