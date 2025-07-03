@@ -2,9 +2,30 @@ NO ./textures/eagle.xpm
 SO ./textures/mossy.xpm
 WE ./textures/purplestone.xpm
 EA ./textures/colorstone.xpm
-                     
-F 255,244,235
+
+// OK
+// tabs OK
+// F 255,255,255qwer OK
+// F 255,244,2350000 OK
+// qwerF 255,244,235 OK
+// F qwer255,255,255 OK
+// F 255,255,255,, OK
+// F 255,255,,255 OK
+// Fqwer 255,244,235 OK
+
+// KO
+// F 255,244,255
+// q                 KO
+//
+// F 255,244,255   4 OK
+// norm
+
+F    255,244,255   
+   q
+
 C 145,200,228
+
+q
 
         1111111111111111111111111
         1000000000110000000000001

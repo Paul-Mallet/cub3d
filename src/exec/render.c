@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:47:27 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/02 21:55:08 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/03 16:00:41 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	render(t_data *data)
 	screen->y = 0;
 	clear_tex_buff(data, tex_buff);
 	generate_textures(data, textures);
-	floor_casting(data, textures, tex_buff);
+	floor_casting(data);
 	while (screen->x < S_WIDTH)
 	{
 		draw_my_pixel_line(data, textures, tex_buff);

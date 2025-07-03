@@ -6,7 +6,7 @@
 /*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 19:07:56 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:20:28 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,26 @@ int	get_color(t_data *data, char *line)
 	int		components[3];
 	int		i;
 	int		j;
-	char	identifier;
 
-	i = 0;
 	j = 0;
-	identifier = line[0];
-	while (line[i] && !ft_isdigit(line[i]))
-		i++;
+	i = check_before_rgb(line, 1);
+	if (i == -1)
+		return (-1);
 	while (j < 3 && line[i])
 	{
 		components[j++] = ft_atoi(&line[i]);
 		while (line[i] && ft_isdigit(line[i]))
 			i++;
-		while (line[i] && line[i] == ',')
+		if (line[i] && line[i] == ',' && j < 3)
 			i++;
+		if (line[i] && !ft_isdigit(line[i]))
+			break ;
 	}
-	if (line[i] && !ft_isdigit(line[i]) && ft_strcmp(&line[i], "\n"))
+	while (ft_isspace(line[i]))
+		i++;
+	if (line[i] && !ft_isspace(line[i]) && ft_strcmp(&line[i], "\n"))
 		return (printf("Error\nInvalid char detected in color\n"), -1);
-	if (j == 3 && check_color(data, components, identifier) == 1)
+	if (j == 3 && check_color(data, components, line[0]) == 1)
 		return (-1);
 	return (0);
 }

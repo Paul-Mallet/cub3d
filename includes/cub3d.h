@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/02 22:00:25 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/03 15:58:17 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -324,6 +324,8 @@ int			check_letter(t_data *data);
 int			count_lines(char *filename, t_data *data);
 void		error_map(t_data *data);
 int			check_char(char c);
+int			ft_isspace(const char c);
+int			check_before_rgb(char *line, int i);
 int			get_color(t_data *data, char *line);
 int			free_tab(char **tab);
 int			verif_textures(t_data *data);

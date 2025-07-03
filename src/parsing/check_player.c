@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:26:16 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/02 22:04:04 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/03 16:24:49 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,16 @@ int	check_player_surrounded(t_data *data)
 	return (0);
 }
 
+int	check_player_count(t_data *data)
+{
+	if (data->parsing.player_count != 1)
+	{
+		printf("Error\nNo player found\n");
+		return (-1);
+	}
+	return (0);
+}
+
 int	check_player(t_data *data)
 {
 	int	i;
@@ -85,10 +95,5 @@ int	check_player(t_data *data)
 			}
 		}
 	}
-	if (data->parsing.player_count != 1)
-	{
-		printf("Error\nNo player found\n");
-		return (-1);
-	}
-	return (0);
+	return (check_player_count(data));
 }
