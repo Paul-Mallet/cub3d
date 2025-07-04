@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:58:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/04 11:38:16 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/07/04 15:16:01 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	verif_values(t_data *data)
 
 int	print_error(t_data *data)
 {
+	if (!data->parsing.is_empty)
+		return (printf("Error\nFound invalid non empty line\n"), 1);
 	if (data->parsing.color_c == -1)
 		return (printf("Error\nCeiling color not found\n"), -1);
 	if (data->parsing.color_f == -1)

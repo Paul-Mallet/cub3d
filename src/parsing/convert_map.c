@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 08:58:13 by paul_mallet       #+#    #+#             */
-/*   Updated: 2025/07/02 22:05:58 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/04 12:36:45 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,20 @@
 // 		printf("\n");
 // 	}
 // }
+void	print_map_char(t_data *data)
+{
+	int	x;
+	int	y;
 
-// void	print_map_char(t_data *data)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = -1;
-// 	while (++x < data->parsing.map_line_number)
-// 	{
-// 		y = -1;
-// 		while (++y < data->parsing.map_col_number)
-// 			printf("%c", data->parsing.map[x][y]);
-// 		printf("\n");
-// 	}
-// }
+	x = -1;
+	while (++x < data->parsing.map_line_number)
+	{
+		y = -1;
+		while (++y < data->parsing.map_col_number)
+			printf("%c", data->parsing.map[x][y]);
+		printf("\n");
+	}
+}
 
 static void	malloc_rows(t_data *data, int rows)
 {
