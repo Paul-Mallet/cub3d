@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/04 15:40:01 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/07/04 15:55:21 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -349,6 +349,7 @@ int			print_error(t_data *data);
 int			check_player_char(char c);
 int			check_components(t_data *data, char *line);
 int			check_player_surrounded(t_data *data);
+int			check_rgb_during(t_data *data, char identifier, int i);
 
 // INIT
 void		convert_map_to_int(t_data *data);

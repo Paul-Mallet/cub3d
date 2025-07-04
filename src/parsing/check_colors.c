@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/04 15:46:55 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/07/04 15:55:01 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,7 @@ int	get_textures_and_colors(t_data *data)
 		identifier = data->parsing.file[i][0];
 		if (identifier == 'C' || identifier == 'F')
 		{
-			if (check_duplicates(identifier, data) == -1)
-				return (-1);
-			if (get_color(data, data->parsing.file[i]) == -1)
+			if (check_rgb_during(data, identifier, i) == -1)
 				return (-1);
 		}
 		else if (identifier == 'S' || identifier == 'N'

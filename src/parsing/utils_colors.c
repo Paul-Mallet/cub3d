@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:56:29 by pamallet          #+#    #+#             */
-/*   Updated: 2025/07/04 15:41:38 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/07/04 15:55:07 by pamallet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ int	check_before_rgb(char *line, int i)
 	if (line[i] && !ft_isdigit(line[i]) && ft_strcmp(&line[i], "\n"))
 		return (printf("Error\nInvalid char detected in color\n"), -1);
 	return (i);
+}
+
+int	check_rgb_during(t_data *data, char identifier, int i)
+{
+	if (check_duplicates(identifier, data) == -1)
+		return (-1);
+	if (get_color(data, data->parsing.file[i]) == -1)
+		return (-1);
+	return (0);
 }
 
 int	check_empty_line(t_data *data, int i)

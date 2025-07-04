@@ -4,8 +4,7 @@ WE ./textures/purplestone.xpm
 EA ./textures/colorstone.xpm
 
 
-F    255,244,255   
-
+F  255,244,233
 C 145,200,228
 
         1111111111111111111111111
