@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_colors_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:58:24 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/03 17:41:04 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/04 09:46:47 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	verif_values(t_data *data)
 
 int	print_error(t_data *data)
 {
+	if (!data->parsing.is_empty)
+		return (printf("Error\nFound invalid non empty line\n"), 1);
 	if (data->parsing.color_c == -1)
 		return (printf("Error\nCeiling color not found\n"), 1);
 	if (data->parsing.color_f == -1)
@@ -45,7 +47,5 @@ int	print_error(t_data *data)
 		return (printf("Error\nEast texture not found\n"), 1);
 	if (!data->parsing.text_we)
 		return (printf("Error\nWest texture not found\n"), 1);
-	if (!data->parsing.is_empty)
-		return (printf("Error\nFound invalid non empty line\n"), 1);
 	return (0);
 }

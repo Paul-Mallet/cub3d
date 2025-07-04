@@ -6,7 +6,7 @@
 /*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/04 08:37:03 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/04 09:55:59 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,6 +327,7 @@ void		error_map(t_data *data);
 int			check_char(char c);
 int			ft_isspace(const char c);
 int			check_before_rgb(char *line, int i);
+int			check_empty_line(t_data *data, int i);
 int			get_color(t_data *data, char *line);
 int			free_tab(char **tab);
 int			verif_textures(t_data *data);

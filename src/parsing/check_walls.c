@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:07:37 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 18:45:13 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/04 11:07:53 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	check_walls(t_data *data)
 	int			j;
 	t_fill_data	fill;
 
-	if (!check_line(data->parsing.map[data->parsing.map_line_number -1])
+	if (!check_line(data->parsing.map[data->parsing.map_line_number - 1])
 		|| check_spaces(data) == -1 || init_fill(data, &fill) == 1)
 		return (-1);
 	i = 0;

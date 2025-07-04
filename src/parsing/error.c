@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:20:57 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/06/30 16:55:53 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:32:51 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	count_lines(char *filename, t_data *data)
 	int		len;
 	int		bit;
 
+	(void)data;
 	len = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -60,14 +61,12 @@ int	count_lines(char *filename, t_data *data)
 	{
 		bit = read(fd, &c, 1);
 		if (bit == -1)
-			return (close(fd), printf("Error\nRead file failed\n"));
+			return (close(fd), printf("Error\nRead file failed\n"), -1);
 		if (c == '\n')
 			len++;
 	}
-	if (bit != '\n' && bit != 0)
-		len++;
-	if (bit == '\n')
-		error_map(data);
+	if (c != '\n')
+		return (close(fd), printf("Error\nMap isn't the last elem\n"), -1);
 	return (close(fd), len);
 }
 

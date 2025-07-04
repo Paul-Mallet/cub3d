@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:02:54 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/03 17:43:33 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:35:28 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	read_file(char *filename, t_data *data)
 	j = count_lines(filename, data);
 	if (j == -1)
 		return (-1);
-	data->parsing.file = malloc(sizeof(char *) * (j + 1));
+	data->parsing.file = (char **)malloc((j + 1) * sizeof(char *));
 	if (!data->parsing.file)
 		return (-1);
 	i = 0;
@@ -41,8 +41,17 @@ int	read_file(char *filename, t_data *data)
 	return (data->parsing.file[i] = NULL, close(fd), 0);
 }
 
-// read + fill map here
-// check empty line?
+int	check_after_map(t_data *data, int lines)
+{
+	if (lines > data->parsing.map_line_number + 1)
+	{
+		printf("Error\nMap isn't the last elem\n");
+		return (-1);
+	}
+	return (0);
+}
+
+// non check lines after
 int	read_map(t_data *data, int i)
 {
 	int		j;
@@ -68,5 +77,5 @@ int	read_map(t_data *data, int i)
 	}
 	data->parsing.map[j] = NULL;
 	data->parsing.map_line_number = j;
-	return (0);
+	return (check_after_map(data, lines));
 }
