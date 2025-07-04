@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/03 19:28:32 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/04 08:39:43 by paul_mallet      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ int	get_texture(t_data *data, char *line)
 	char	*trimmed;
 
 	split_line = ft_split(line, ' ');
-	if (!split_line || !split_line[0] || !split_line[1])
+	if (!split_line || !split_line[0] || !split_line[1] || split_line[2])
 		return (ft_printf("Error\nInvalid texture line : %s\n", line),
-			free_tab(split_line), 1);
+			free_tab(split_line), -1);
 	trimmed = ft_strtrim(split_line[1], "\n");
 	if (!trimmed)
 		return (ft_printf("Error\nMalloc failed\n"), free_tab(split_line), 1);
