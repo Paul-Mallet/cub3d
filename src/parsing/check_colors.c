@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/04 08:39:43 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/04 11:41:34 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	check_color(t_data *data, int *components, char identifier)
 	{
 		if (components[i] < 0 || components[i] > 255)
 			return (printf("Error\nColor value %d must be between 0 and 255\n",
-					components[i]), 1);
+					components[i]), -1);
 		i++;
 	}
 	color = (components[0] << 16) | (components[1] << 8) | components[2];
@@ -43,7 +43,7 @@ int	get_color(t_data *data, char *line)
 	i = check_before_rgb(line, 1);
 	if (i == -1)
 		return (-1);
-	while (j < 3 && line[i])
+	while (line[i])
 	{
 		components[j++] = ft_atoi(&line[i]);
 		while (line[i] && ft_isdigit(line[i]))
@@ -57,7 +57,7 @@ int	get_color(t_data *data, char *line)
 		i++;
 	if (line[i] && !ft_isspace(line[i]) && ft_strcmp(&line[i], "\n"))
 		return (printf("Error\nInvalid char detected in color\n"), -1);
-	if (j == 3 && check_color(data, components, line[0]) == 1)
+	if (j == 3 && check_color(data, components, line[0]) == -1)
 		return (-1);
 	return (0);
 }
@@ -71,7 +71,7 @@ static int	set_texture(char **split, char *trim, char **tex, char *name)
 		free_tab(split);
 		free(trim);
 		ft_printf("Error\nDuplicate %s texture\n", name);
-		return (1);
+		return (-1);
 	}
 	tmp = ft_strdup(trim);
 	free(trim);
@@ -79,7 +79,7 @@ static int	set_texture(char **split, char *trim, char **tex, char *name)
 	{
 		free_tab(split);
 		ft_printf("Error\nMalloc failed\n");
-		return (1);
+		return (-1);
 	}
 	*tex = tmp;
 	free_tab(split);
