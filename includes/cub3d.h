@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:18:26 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/04 09:55:59 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/04 15:40:01 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -316,6 +316,7 @@ typedef struct s_data
 	t_tex		tex;
 	t_floor		floor;
 	t_parsing	parsing;
+	int			components[3];
 }	t_data;
 
 // PARSING
@@ -346,6 +347,7 @@ int			check_space(t_data *data, int i, int j);
 int			check_duplicates(char identifier, t_data *data);
 int			print_error(t_data *data);
 int			check_player_char(char c);
+int			check_components(t_data *data, char *line);
 int			check_player_surrounded(t_data *data);
 
 // INIT

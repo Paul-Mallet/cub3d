@@ -6,7 +6,7 @@
 /*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 11:27:20 by bfiquet           #+#    #+#             */
-/*   Updated: 2025/07/04 15:16:09 by bfiquet          ###   ########.fr       */
+/*   Updated: 2025/07/04 15:46:55 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,16 @@ int	check_color(t_data *data, int *components, char identifier)
 
 int	get_color(t_data *data, char *line)
 {
-	int		components[3];
-	int		i;
-	int		j;
+	int	i;
 
-	j = 0;
-	i = check_before_rgb(line, 1);
+	i = check_components(data, line);
 	if (i == -1)
 		return (-1);
-	while (line[i])
-	{
-		components[j++] = ft_atoi(&line[i]);
-		while (line[i] && ft_isdigit(line[i]))
-			i++;
-		if (line[i] && line[i] == ',' && j < 3)
-			i++;
-		if (line[i] && !ft_isdigit(line[i]))
-			break ;
-	}
 	while (ft_isspace(line[i]))
 		i++;
 	if (line[i] && !ft_isspace(line[i]) && ft_strcmp(&line[i], "\n"))
 		return (printf("Error\nInvalid char detected in color\n"), -1);
-	if (j == 3 && check_color(data, components, line[0]) == -1)
+	if (check_color(data, data->components, line[0]) == -1)
 		return (-1);
 	return (0);
 }

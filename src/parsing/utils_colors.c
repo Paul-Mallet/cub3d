@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul_mallet <paul_mallet@student.42.fr>    +#+  +:+       +#+        */
+/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:56:29 by pamallet          #+#    #+#             */
-/*   Updated: 2025/07/04 12:25:07 by paul_mallet      ###   ########.fr       */
+/*   Updated: 2025/07/04 15:41:38 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,31 @@ int	check_empty_line(t_data *data, int i)
 		return (-1);
 	}
 	return (0);
+}
+
+int	check_components(t_data *data, char *line)
+{
+	int		i;
+	int		j;
+
+	j = 0;
+	i = check_before_rgb(line, 1);
+	if (i == -1)
+		return (-1);
+	while (line[i])
+	{
+		data->components[j] = ft_atoi(&line[i]);
+		j++;
+		while (line[i] && ft_isdigit(line[i]))
+			i++;
+		if (line[i] && line[i] == ',' && j < 3)
+			i++;
+		if (line[i] && !ft_isdigit(line[i]))
+			break ;
+		if (!line[i])
+			break ;
+	}
+	if (j != 3)
+		return (printf("Error\ncolor must have 3 components\n"), -1);
+	return (i);
 }
