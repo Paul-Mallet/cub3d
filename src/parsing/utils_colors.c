@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pamallet <pamallet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfiquet <bfiquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:56:29 by pamallet          #+#    #+#             */
-/*   Updated: 2025/07/04 15:55:07 by pamallet         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:14:21 by bfiquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ int	check_before_rgb(char *line, int i)
 
 int	check_rgb_during(t_data *data, char identifier, int i)
 {
+	if (!data->parsing.text_ea || !data->parsing.text_we
+		|| !data->parsing.text_no || !data->parsing.text_so)
+		return (printf("Error\nfound color before all textures\n"), -1);
 	if (check_duplicates(identifier, data) == -1)
 		return (-1);
 	if (get_color(data, data->parsing.file[i]) == -1)
